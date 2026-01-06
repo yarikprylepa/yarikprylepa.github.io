@@ -1,10 +1,355 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Yarik Prylepa</title>
+  <meta charset="UTF-8" />
+  <title>Yarik Prylepa – Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    /* Global */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      scroll-behavior: smooth; /* smooth scroll for anchor links */ /* [1] */
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f5f7;
+      color: #111827;
+    }
+
+    body {
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5vw;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #4b5563;
+      font-size: 0.95rem;
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: #111827;
+      transition: width 0.2s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Layout */
+    main {
+      padding-top: 80px; /* space for fixed navbar */
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 6rem 5vw 4rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    section p {
+      max-width: 720px;
+      margin-bottom: 1rem;
+      color: #4b5563;
+    }
+
+    /* Hero / intro */
+    #home {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: #6b7280;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .tag {
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #fff;
+      font-size: 0.8rem;
+      color: #4b5563;
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .project-card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 1.25rem 1.4rem;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      border: 1px solid #e5e7eb;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+      border-color: #d1d5db;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.4rem;
+    }
+
+    .project-title {
+      font-weight: 600;
+    }
+
+    .project-tech {
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    .project-summary {
+      font-size: 0.9rem;
+      color: #4b5563;
+      margin-bottom: 0.4rem;
+    }
+
+    .project-toggle {
+      font-size: 0.8rem;
+      color: #2563eb;
+    }
+
+    .project-details {
+      display: none;
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      color: #4b5563;
+    }
+
+    .project-card.open .project-details {
+      display: block;
+    }
+
+    /* Contact */
+    .contact-links {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .contact-links a {
+      text-decoration: none;
+      color: #111827;
+      font-size: 0.95rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+
+    .contact-links a:hover {
+      background: #f3f4f6;
+      transform: translateY(-1px);
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      header {
+        padding: 0 1rem;
+      }
+
+      nav a {
+        margin-left: 1rem;
+        font-size: 0.85rem;
+      }
+
+      section {
+        padding: 5rem 1.2rem 3rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Data Science Learner</h1>
+
+  <header>
+    <div class="logo">Yarik Prylepa</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero / Intro -->
+    <section id="home">
+      <h1 class="hero-title">Maths, Stats & Data Science student</h1>
+      <p class="hero-subtitle">
+        Second‑year Mathematics & Statistics with Data Science student using data to solve real problems.
+      </p>
+      <div class="hero-tags">
+        <span class="tag">Python</span>
+        <span class="tag">R</span>
+        <span class="tag">SQL</span>
+        <span class="tag">Machine learning</span>
+        <span class="tag">Data visualization</span>
+      </div>
+      <p>
+        I enjoy building analytical projects that combine statistics, programming and clear communication –
+        from exploratory data analysis to predictive models and dashboards.
+      </p>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <h2>Projects</h2>
+      <p>
+        A few projects that show how I approach data problems, from cleaning and exploration to modelling and communicating results.
+      </p>
+
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <article class="project-card">
+          <div class="project-header">
+            <div class="project-title">Project title 1</div>
+            <div class="project-tech">Python · Pandas · Matplotlib</div>
+          </div>
+          <p class="project-summary">
+            Short one‑line description of the project and its impact.
+          </p>
+          <div class="project-toggle">Click to see more details ↓</div>
+          <div class="project-details">
+            <ul>
+              <li>Describe the problem you were trying to solve.</li>
+              <li>Mention a specific technique or model you used.</li>
+              <li>Add one concrete result or what you learned.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card">
+          <div class="project-header">
+            <div class="project-title">Project title 2</div>
+            <div class="project-tech">R · ggplot2 · Regression</div>
+          </div>
+          <p class="project-summary">
+            Short one‑line description of the project and its impact.
+          </p>
+          <div class="project-toggle">Click to see more details ↓</div>
+          <div class="project-details">
+            <ul>
+              <li>Describe the dataset and main challenge.</li>
+              <li>Highlight a key statistical concept used.</li>
+              <li>Explain how you evaluated performance.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card">
+          <div class="project-header">
+            <div class="project-title">Project title 3</div>
+            <div class="project-tech">SQL · Dashboards</div>
+          </div>
+          <p class="project-summary">
+            Short one‑line description of the project and its impact.
+          </p>
+          <div class="project-toggle">Click to see more details ↓</div>
+          <div class="project-details">
+            <ul>
+              <li>Summarise the business question.</li>
+              <li>Describe how you transformed the data.</li>
+              <li>Mention a key insight or decision supported.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>
+        Open to data, analytics and quant‑related opportunities, as well as collaborations on interesting projects.
+      </p>
+
+      <div class="contact-links">
+        <a href="mailto:your.email@example.com" target="_blank" rel="noopener">Email</a>
+        <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/yarikprylepa" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Toggle project details on card click
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('open');
+      });
+    });
+  </script>
+
 </body>
 </html>
