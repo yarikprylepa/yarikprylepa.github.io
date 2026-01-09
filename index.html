@@ -14,7 +14,7 @@
     }
 
     html, body {
-      scroll-behavior: smooth; /* smooth scroll for anchor links */ /* [1] */
+      scroll-behavior: smooth;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: #f5f5f7;
       color: #111827;
@@ -126,68 +126,6 @@
       color: #4b5563;
     }
 
-    /* Projects */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .project-card {
-      background: #ffffff;
-      border-radius: 12px;
-      padding: 1.25rem 1.4rem;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
-      border: 1px solid #e5e7eb;
-      cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
-    }
-
-    .project-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
-      border-color: #d1d5db;
-    }
-
-    .project-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 0.4rem;
-    }
-
-    .project-title {
-      font-weight: 600;
-    }
-
-    .project-tech {
-      font-size: 0.8rem;
-      color: #6b7280;
-    }
-
-    .project-summary {
-      font-size: 0.9rem;
-      color: #4b5563;
-      margin-bottom: 0.4rem;
-    }
-
-    .project-toggle {
-      font-size: 0.8rem;
-      color: #2563eb;
-    }
-
-    .project-details {
-      display: none;
-      margin-top: 0.5rem;
-      font-size: 0.85rem;
-      color: #4b5563;
-    }
-
-    .project-card.open .project-details {
-      display: block;
-    }
-
     /* Contact */
     .contact-links {
       margin-top: 1rem;
@@ -243,20 +181,20 @@
   <main>
     <!-- Hero / Intro -->
     <section id="home">
-      <h1 class="hero-title">Maths, Stats & Data Science student</h1>
+      <h1 class="hero-title">Student and part-time road cyclist</h1>
       <p class="hero-subtitle">
-        Second‑year Mathematics & Statistics with Data Science student using data to solve real problems.
+        Second‑year Mathematics and Statistics with Data Science student @ University of Reading
       </p>
       <div class="hero-tags">
         <span class="tag">Python</span>
         <span class="tag">R</span>
-        <span class="tag">SQL</span>
+        <span class="tag">SAS</span>
         <span class="tag">Machine learning</span>
         <span class="tag">Data visualization</span>
       </div>
       <p>
-        I enjoy building analytical projects that combine statistics, programming and clear communication –
-        from exploratory data analysis to predictive models and dashboards.
+        I enjoy building fun and useful projects –
+        from exploratory statistics and predictive models 
       </p>
     </section>
 
@@ -264,92 +202,24 @@
     <section id="projects">
       <h2>Projects</h2>
       <p>
-        A few projects that show how I approach data problems, from cleaning and exploration to modelling and communicating results.
+        This part is still in development. Something exciting is coming.
       </p>
-
-      <div class="projects-grid">
-        <!-- Project 1 -->
-        <article class="project-card">
-          <div class="project-header">
-            <div class="project-title">100Routine</div>
-            <div class="project-tech">Python · Pandas · Matplotlib</div>
-          </div>
-          <p class="project-summary">
-            Nurturing good habits are easier than you think
-          </p>
-          <div class="project-toggle">Click to see more details ↓</div>
-          <div class="project-details">
-            <ul>
-              <li>Describe the problem you were trying to solve.</li>
-              <li>Mention a specific technique or model you used.</li>
-              <li>Add one concrete result or what you learned.</li>
-            </ul>
-          </div>
-        </article>
-
-        <!-- Project 2 -->
-        <article class="project-card">
-          <div class="project-header">
-            <div class="project-title">Cycly</div>
-            <div class="project-tech">R · ggplot2 · Regression</div>
-          </div>
-          <p class="project-summary">
-            Make cycling what you want it to be
-          </p>
-          <div class="project-toggle">Click to see more details ↓</div>
-          <div class="project-details">
-            <ul>
-              <li>Describe the dataset and main challenge.</li>
-              <li>Highlight a key statistical concept used.</li>
-              <li>Explain how you evaluated performance.</li>
-            </ul>
-          </div>
-        </article>
-
-        <!-- Project 3 -->
-        <article class="project-card">
-          <div class="project-header">
-            <div class="project-title">Project 3</div>
-            <div class="project-tech">Some cool tool · Some cool tool 2</div>
-          </div>
-          <p class="project-summary">
-            Something really useful
-          </p>
-          <div class="project-toggle">Click to see more details ↓</div>
-          <div class="project-details">
-            <ul>
-              <li>Summarise the business question.</li>
-              <li>Describe how you transformed the data.</li>
-              <li>Mention a key insight or decision supported.</li>
-            </ul>
-          </div>
-        </article>
-      </div>
     </section>
 
     <!-- Contact -->
     <section id="contact">
       <h2>Contact</h2>
       <p>
-        Open to data, machine learning and quant‑related opportunities, as well as collaborations on interesting projects.
+        Open to data, analytics and quant‑related opportunities, as well as collaborations on interesting projects
       </p>
 
       <div class="contact-links">
-        <a href="mailto:yaraslauprylepa@example.com" target="_blank" rel="noopener">Email</a>
-        <a href="https://www.linkedin.com/in/yprylepa" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:yaraslauprylepa@gmail.com" target="_blank" rel="noopener">Email</a>
+        <a href="https://www.linkedin.com/in/yprylepa/" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://github.com/yarikprylepa" target="_blank" rel="noopener">GitHub</a>
       </div>
     </section>
   </main>
-
-  <script>
-    // Toggle project details on card click
-    document.querySelectorAll('.project-card').forEach(card => {
-      card.addEventListener('click', () => {
-        card.classList.toggle('open');
-      });
-    });
-  </script>
 
 </body>
 </html>
