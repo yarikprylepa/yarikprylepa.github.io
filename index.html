@@ -1,116 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Yarik Prylepa - macOS Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yarik’s MacBook</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { 
-      height: 100vh; 
-      background: #1a1a1a;
-      display: flex; align-items: center; justify-content: center;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0f172a;
+      font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       overflow: hidden;
     }
-    
-    /* MacBook Pro Mockup */
+
+    /* MacBook frame */
     .macbook {
-      width: 90vmin; height: 52vmin;
-      background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
-      border-radius: 24px;
+      width: min(900px, 95vw);
+      aspect-ratio: 16 / 10;
+      background: linear-gradient(145deg, #2c2c2c, #111);
+      border-radius: 22px;
+      padding: 14px;
+      box-shadow:
+        0 40px 80px rgba(0,0,0,0.7),
+        inset 0 2px 8px rgba(255,255,255,0.1);
       position: relative;
-      box-shadow: 
-        0 50px 100px rgba(0,0,0,0.7),
-        inset 0 2px 10px rgba(255,255,255,0.1);
     }
+
     .screen {
-      width: 94%; height: 90%;
-      margin: 3% auto;
+      width: 100%;
+      height: 100%;
+      border-radius: 14px;
       background: #000;
-      border-radius: 16px;
-      position: relative;
       overflow: hidden;
-      box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+      position: relative;
+      box-shadow: inset 0 0 30px rgba(0,0,0,0.7);
     }
-    
+
     /* Desktop */
     .desktop {
-      position: absolute; top: 0; left: 0; right: 0; bottom: 80px;
-      background: url('images/wallpaper.jpg') center/cover;
-      cursor: default;
+      position: absolute;
+      inset: 0 0 70px 0; /* leave space for dock */
+      background: url("images/wallpaper.jpg") center/cover no-repeat;
     }
-    
-    /* Icons */
+
+    /* Icons on desktop */
     .icon {
       position: absolute;
-      width: 80px; height: 100px;
+      width: 80px;
       text-align: center;
-      color: white;
-      cursor: pointer;
-      transition: all 0.2s;
+      color: #fff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.7);
+      cursor: default;
       user-select: none;
+      font-size: 12px;
     }
-    .icon img { width: 48px; height: 48px; margin: 0 auto 8px; }
-    .icon span { font-size: 12px; display: block; }
-    .icon:hover { transform: scale(1.1); }
-    .icon:active { transform: scale(0.95); }
-    
-    /* Positions */
-    #resume { top: 20%; left: 10%; }
-    #projects { top: 20%; left: 35%; }
-    
+    .icon img {
+      display: block;
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 4px;
+    }
+    .icon:hover { transform: scale(1.05); }
+
+    /* Simple positions */
+    #icon-resume { top: 15%; left: 8%; }
+    #icon-projects { top: 30%; left: 8%; }
+
     /* Dock */
     .dock {
-      position: absolute; bottom: 20px; left: 50%;
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
       transform: translateX(-50%);
-      display: flex; gap: 16px;
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(25px);
-      padding: 12px 24px;
-      border-radius: 36px;
+      display: flex;
+      gap: 14px;
+      padding: 8px 18px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(20px);
     }
     .dock img {
-      width: 56px; height: 56px; border-radius: 16px;
-      transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      transition: transform 0.2s;
     }
-    .dock img:hover { transform: scale(1.5); }
-    
+    .dock img:hover { transform: scale(1.3); }
+
     /* Windows */
     .window {
-      position: fixed; z-index: 100;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(20px);
-      border-radius: 12px;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+      position: absolute;
+      top: 12%;
+      left: 20%;
+      width: 60%;
+      height: 65%;
+      background: rgba(248,250,252,0.96);
+      border-radius: 10px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
       overflow: hidden;
-      min-width: 400px; min-height: 300px;
-      resize: both;
+      display: none; /* hidden by default */
     }
-    .window.hidden { display: none; }
+    .window.visible { display: block; }
+
     .titlebar {
-      height: 32px; background: rgba(0,0,0,0.05);
-      display: flex; align-items: center; gap: 12px;
-      padding: 0 16px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 12px;
+      background: rgba(148,163,184,0.25);
       cursor: move;
+      font-size: 13px;
     }
-    .close, .min, .max { width: 12px; height: 12px; border-radius: 50%; }
-    .close { background: #ff5f57; }
-    .min { background: #ffbd2e; }
-    .max { background: #28ca42; }
-    .close:hover { background: #ff3b30; }
-    .min:hover { background: #fece2f; }
-    .max:hover { background: #30d158; }
-    
-    /* Finder Content */
-    .finder-content { padding: 24px; height: calc(100% - 32px); overflow: auto; }
-    .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
-    .project { border: 1px solid #ddd; padding: 16px; border-radius: 8px; cursor: pointer; }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-      .macbook { width: 95vw; height: 55vw; }
-      .window { min-width: 300px; }
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+    .dot.red { background: #ff5f57; }
+    .dot.yellow { background: #ffbd2e; }
+    .dot.green { background: #28c840; }
+
+    .window-content {
+      height: calc(100% - 30px);
+      padding: 16px;
+      overflow: auto;
+      font-size: 14px;
+      color: #111827;
+    }
+
+    iframe {
+      border: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 8px; overflow: auto; }
+      .macbook { width: 100%; box-shadow: none; }
+      .window { width: 90%; left: 5%; height: 70%; top: 15%; }
     }
   </style>
 </head>
@@ -118,117 +149,96 @@
   <div class="macbook">
     <div class="screen">
       <div class="desktop">
-        <!-- Desktop Icons -->
-        <div class="icon" id="resume-icon" ondblclick="openWindow('resume')">
-          <img src="images/icons/pdf.png" alt="Resume.pdf">
+        <!-- Desktop icons -->
+        <div class="icon" id="icon-resume">
+          <img src="images/icons/pdf.png" alt="Resume">
           <span>Resume.pdf</span>
         </div>
-        <div class="icon" id="projects-icon" ondblclick="openWindow('projects')">
+        <div class="icon" id="icon-projects">
           <img src="images/icons/folder.png" alt="Projects">
           <span>Projects</span>
         </div>
       </div>
-      
+
       <!-- Dock -->
       <div class="dock">
-        <img src="images/icons/python.png" title="Python" ondblclick="openApp('terminal')">
-        <img src="images/icons/r.png" title="R">
-        <img src="images/icons/sas.png" title="SAS">
-        <img src="images/icons/cycling.png" title="Strava">
-        <img src="images/icons/music.png" title="Spotify">
+        <img src="images/icons/python.png" alt="Python" title="Python">
+        <img src="images/icons/r.png" alt="R" title="R">
+        <img src="images/icons/sas.png" alt="SAS" title="SAS">
+        <img src="images/icons/cycling.png" alt="Cycling" title="Cycling">
+        <img src="images/icons/music.png" alt="Music" title="Music">
       </div>
-    </div>
-  </div>
-  
-  <!-- Windows -->
-  <div id="resume" class="window hidden">
-    <div class="titlebar">
-      <div class="close" onclick="closeWindow('resume')"></div>
-      <div class="min" onclick="minimize('resume')"></div>
-      <div class="max" onclick="maximize('resume')"></div>
-      <span>Resume.pdf</span>
-    </div>
-    <iframe src="images/resume.pdf" style="width:100%; height:calc(100% - 32px); border:none;"></iframe>
-  </div>
-  
-  <div id="projects" class="window hidden">
-    <div class="titlebar">
-      <div class="close" onclick="closeWindow('projects')"></div>
-      <div class="min" onclick="minimize('projects')"></div>
-      <div class="max" onclick="maximize('projects')"></div>
-      <span>Projects</span>
-    </div>
-    <div class="finder-content">
-      <h2>📁 My Projects</h2>
-      <div class="project-grid">
-        <div class="project">
-          <h3>Cycling Predictor</h3>
-          <p>ML model for race times (Python).</p>
-          <a href="https://github.com/yarikprylepa/project1">GitHub →</a>
+
+      <!-- Resume window -->
+      <div class="window" id="win-resume">
+        <div class="titlebar">
+          <div class="dot red" data-close="win-resume"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
+          <span>Resume.pdf</span>
         </div>
-        <div class="project">
-          <h3>Data Viz Dashboard</h3>
-          <p>R/Shiny interactive plots.</p>
-          <a href="https://github.com/yarikprylepa/project2">GitHub →</a>
+        <div class="window-content">
+          <iframe src="images/resume.pdf"></iframe>
         </div>
-        <div class="project">
-          <h3>SAS Analytics</h3>
-          <p>Stats models for uni project.</p>
-          <a href="https://github.com/yarikprylepa/project3">GitHub →</a>
+      </div>
+
+      <!-- Projects window -->
+      <div class="window" id="win-projects">
+        <div class="titlebar">
+          <div class="dot red" data-close="win-projects"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
+          <span>Projects</span>
+        </div>
+        <div class="window-content">
+          <h2>Projects</h2>
+          <ul>
+            <li><strong>Cycling Predictor</strong> – ML on ride data – <a href="https://github.com/yarikprylepa/PROJECT1">GitHub</a></li>
+            <li><strong>Data Viz Dashboard</strong> – R/Shiny – <a href="https://github.com/yarikprylepa/PROJECT2">GitHub</a></li>
+            <li><strong>Stats Models</strong> – SAS/Uni – <a href="https://github.com/yarikprylepa/PROJECT3">GitHub</a></li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
-  
+
   <script>
-    let zIndex = 1;
-    const windows = {};
-    
-    function openWindow(id) {
-      const win = document.getElementById(id);
-      win.classList.remove('hidden');
-      win.style.zIndex = ++zIndex;
-      makeDraggable(win);
-    }
-    
-    function closeWindow(id) {
-      document.getElementById(id).classList.add('hidden');
-    }
-    
-    function minimize(id) { /* Hide to taskbar later */ }
-    function maximize(id) {
-      const win = document.getElementById(id);
-      win.style.width = '90%'; win.style.height = '80%';
-      win.style.top = '5%'; win.style.left = '5%';
-    }
-    
-    function makeDraggable(el) {
-      let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-      el.querySelector('.titlebar').onmousedown = dragMouseDown;
-      
-      function dragMouseDown(e) {
-        e.preventDefault();
-        pos3 = e.clientX; pos4 = e.clientY;
-        document.onmouseup = closeDrag;
-        document.onmousemove = elementDrag;
-      }
-      
-      function elementDrag(e) {
-        pos1 = pos3 - e.clientX; pos2 = pos4 - e.clientY;
-        pos3 = e.clientX; pos4 = e.clientY;
-        el.style.top = (el.offsetTop - pos2) + "px";
-        el.style.left = (el.offsetLeft - pos1) + "px";
-      }
-      
-      function closeDrag() {
-        document.onmouseup = null;
-        document.onmousemove = null;
-      }
-    }
-    
-    function openApp(app) {
-      if (app === 'terminal') openWindow('projects'); // Customize
-    }
+    // Open windows on double‑click
+    document.getElementById('icon-resume').ondblclick = () => {
+      document.getElementById('win-resume').classList.add('visible');
+    };
+    document.getElementById('icon-projects').ondblclick = () => {
+      document.getElementById('win-projects').classList.add('visible');
+    };
+
+    // Close buttons
+    document.querySelectorAll('.dot.red').forEach(dot => {
+      dot.addEventListener('click', () => {
+        const id = dot.getAttribute('data-close');
+        if (id) document.getElementById(id).classList.remove('visible');
+      });
+    });
+
+    // Simple drag for windows
+    document.querySelectorAll('.window').forEach(win => {
+      const bar = win.querySelector('.titlebar');
+      let offsetX = 0, offsetY = 0, dragging = false;
+
+      bar.addEventListener('mousedown', e => {
+        dragging = true;
+        offsetX = e.clientX - win.offsetLeft;
+        offsetY = e.clientY - win.offsetTop;
+      });
+
+      window.addEventListener('mousemove', e => {
+        if (!dragging) return;
+        win.style.left = (e.clientX - offsetX) + 'px';
+        win.style.top = (e.clientY - offsetY) + 'px';
+      });
+
+      window.addEventListener('mouseup', () => dragging = false);
+      window.addEventListener('mouseleave', () => dragging = false);
+    });
   </script>
 </body>
 </html>
