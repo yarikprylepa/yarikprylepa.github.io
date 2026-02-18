@@ -12,24 +12,70 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative; /* For dock positioning */
         }
         .macbook-container {
-            background: white; /* Solid white behind MacBook */
-            padding: 40px; /* Ample white frame for rug edges */
+            background: white;
+            padding: 40px;
         }
         img {
             display: block;
             width: auto;
-            height: 70vh; /* Natural proportion, fills viewport nicely */
+            height: 70vh;
             max-width: 95vw;
-            transform: scale(1.4); /* Scales image 1.5x bigger, crisp */
-            transform-origin: center; /* Scales from exact center */
+            transform: scale(1.4);
+            transform-origin: center;
+        }
+        /* macOS Dock */
+        .dock {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.3); /* Glass effect */
+            backdrop-filter: blur(20px) saturate(180%); /* Retina blur */
+            border-radius: 16px;
+            padding: 8px 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .dock-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: #000;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); /* Liquid bounce */
+            position: relative;
+        }
+        .dock-icon:hover {
+            transform: scale(1.4) translateY(-8px); /* Magnify + lift */
+            background: rgba(255, 255, 255, 0.5);
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dock { bottom: 10px; padding: 6px 12px; gap: 8px; }
+            .dock-icon { width: 48px; height: 48px; font-size: 24px; }
         }
     </style>
 </head>
 <body>
     <div class="macbook-container">
-        <img src="images/macbook.png">
+        <img src="images/macbook.png" alt="My MacBook">
     </div>
+
+    <nav class="dock" role="navigation" aria-label="Social Links">
+        <a href="https://github.com/yarikprylepa" class="dock-icon" target="_blank" rel="noopener" title="GitHub">📱</a>
+        <a href="https://linkedin.com/in/yprylepa/" class="dock-icon" target="_blank" rel="noopener" title="LinkedIn">💼</a>
+        <a href="#projects" class="dock-icon" title="Projects">📁</a>
+        <a href="#contact" class="dock-icon" title="Contact">✉️</a>
+        <a href="mailto:yaraslauprylepa@gmail.com" class="dock-icon" title="Email">📧</a>
+    </nav>
 </body>
 </html>
