@@ -1,225 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Yarik Prylepa</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yarik Prylepa - macOS Portfolio</title>
   <style>
-    /* Global */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      height: 100vh; 
+      background: #1a1a1a;
+      display: flex; align-items: center; justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow: hidden;
     }
-
-    html, body {
-      scroll-behavior: smooth;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f5f5f7;
-      color: #111827;
-    }
-
-    body {
-      line-height: 1.6;
-    }
-
-    /* Navbar */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 64px;
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid #e5e7eb;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 5vw;
-      z-index: 1000;
-    }
-
-    .logo {
-      font-weight: 600;
-      letter-spacing: 0.03em;
-    }
-
-    nav a {
-      margin-left: 1.5rem;
-      text-decoration: none;
-      color: #4b5563;
-      font-size: 0.95rem;
+    
+    /* MacBook Pro Mockup */
+    .macbook {
+      width: 90vmin; height: 52vmin;
+      background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
+      border-radius: 24px;
       position: relative;
+      box-shadow: 
+        0 50px 100px rgba(0,0,0,0.7),
+        inset 0 2px 10px rgba(255,255,255,0.1);
     }
-
-    nav a::after {
-      content: "";
+    .screen {
+      width: 94%; height: 90%;
+      margin: 3% auto;
+      background: #000;
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+    }
+    
+    /* Desktop */
+    .desktop {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 80px;
+      background: url('images/wallpaper.jpg') center/cover;
+      cursor: default;
+    }
+    
+    /* Icons */
+    .icon {
       position: absolute;
-      left: 0;
-      bottom: -4px;
-      width: 0;
-      height: 2px;
-      background: #111827;
-      transition: width 0.2s ease;
+      width: 80px; height: 100px;
+      text-align: center;
+      color: white;
+      cursor: pointer;
+      transition: all 0.2s;
+      user-select: none;
     }
-
-    nav a:hover::after {
-      width: 100%;
+    .icon img { width: 48px; height: 48px; margin: 0 auto 8px; }
+    .icon span { font-size: 12px; display: block; }
+    .icon:hover { transform: scale(1.1); }
+    .icon:active { transform: scale(0.95); }
+    
+    /* Positions */
+    #resume { top: 20%; left: 10%; }
+    #projects { top: 20%; left: 35%; }
+    
+    /* Dock */
+    .dock {
+      position: absolute; bottom: 20px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 16px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(25px);
+      padding: 12px 24px;
+      border-radius: 36px;
     }
-
-    /* Layout */
-    main {
-      padding-top: 80px; /* space for fixed navbar */
+    .dock img {
+      width: 56px; height: 56px; border-radius: 16px;
+      transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
-
-    section {
-      min-height: 100vh;
-      padding: 6rem 5vw 4rem;
-      max-width: 960px;
-      margin: 0 auto;
+    .dock img:hover { transform: scale(1.5); }
+    
+    /* Windows */
+    .window {
+      position: fixed; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 12px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+      overflow: hidden;
+      min-width: 400px; min-height: 300px;
+      resize: both;
     }
-
-    section h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+    .window.hidden { display: none; }
+    .titlebar {
+      height: 32px; background: rgba(0,0,0,0.05);
+      display: flex; align-items: center; gap: 12px;
+      padding: 0 16px;
+      cursor: move;
     }
-
-    section p {
-      max-width: 720px;
-      margin-bottom: 1rem;
-      color: #4b5563;
-    }
-
-    /* Hero / intro */
-    #home {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .hero-title {
-      font-size: clamp(2.2rem, 4vw, 3rem);
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-subtitle {
-      font-size: 1.1rem;
-      color: #6b7280;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .tag {
-      padding: 0.25rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid #e5e7eb;
-      background: #fff;
-      font-size: 0.8rem;
-      color: #4b5563;
-    }
-
-    /* Contact */
-    .contact-links {
-      margin-top: 1rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    .contact-links a {
-      text-decoration: none;
-      color: #111827;
-      font-size: 0.95rem;
-      padding: 0.4rem 0.8rem;
-      border-radius: 999px;
-      border: 1px solid #d1d5db;
-      background: #fff;
-      transition: background 0.15s ease, transform 0.15s ease;
-    }
-
-    .contact-links a:hover {
-      background: #f3f4f6;
-      transform: translateY(-1px);
-    }
-
+    .close, .min, .max { width: 12px; height: 12px; border-radius: 50%; }
+    .close { background: #ff5f57; }
+    .min { background: #ffbd2e; }
+    .max { background: #28ca42; }
+    .close:hover { background: #ff3b30; }
+    .min:hover { background: #fece2f; }
+    .max:hover { background: #30d158; }
+    
+    /* Finder Content */
+    .finder-content { padding: 24px; height: calc(100% - 32px); overflow: auto; }
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+    .project { border: 1px solid #ddd; padding: 16px; border-radius: 8px; cursor: pointer; }
+    
     /* Responsive */
-    @media (max-width: 640px) {
-      header {
-        padding: 0 1rem;
-      }
-
-      nav a {
-        margin-left: 1rem;
-        font-size: 0.85rem;
-      }
-
-      section {
-        padding: 5rem 1.2rem 3rem;
-      }
+    @media (max-width: 768px) {
+      .macbook { width: 95vw; height: 55vw; }
+      .window { min-width: 300px; }
     }
   </style>
 </head>
 <body>
-
-  <header>
-    <div class="logo">Yarik Prylepa</div>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <!-- Hero / Intro -->
-    <section id="home">
-      <h1 class="hero-title">Student and part-time road cyclist</h1>
-      <p class="hero-subtitle">
-        Second‑year Mathematics and Statistics with Data Science student @ University of Reading
-      </p>
-      <div class="hero-tags">
-        <span class="tag">Python</span>
-        <span class="tag">R</span>
-        <span class="tag">SAS</span>
-        <span class="tag">Machine learning</span>
-        <span class="tag">Data visualization</span>
+  <div class="macbook">
+    <div class="screen">
+      <div class="desktop">
+        <!-- Desktop Icons -->
+        <div class="icon" id="resume-icon" ondblclick="openWindow('resume')">
+          <img src="images/icons/pdf.png" alt="Resume.pdf">
+          <span>Resume.pdf</span>
+        </div>
+        <div class="icon" id="projects-icon" ondblclick="openWindow('projects')">
+          <img src="images/icons/folder.png" alt="Projects">
+          <span>Projects</span>
+        </div>
       </div>
-      <p>
-        I enjoy building fun and useful projects –
-        from exploratory statistics and predictive models to personal hobby apps and websites
-      </p>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects">
-      <h2>Projects</h2>
-      <p>
-        This part is still in development. Something exciting is coming.
-      </p>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>
-        Open to data science, machine learning and quantitative opportunities, as well as collaborations on interesting projects
-      </p>
-
-      <div class="contact-links">
-        <a href="mailto:yaraslauprylepa@gmail.com" target="_blank" rel="noopener">Email</a>
-        <a href="https://www.linkedin.com/in/yprylepa/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://github.com/yarikprylepa" target="_blank" rel="noopener">GitHub</a>
+      
+      <!-- Dock -->
+      <div class="dock">
+        <img src="images/icons/python.png" title="Python" ondblclick="openApp('terminal')">
+        <img src="images/icons/r.png" title="R">
+        <img src="images/icons/sas.png" title="SAS">
+        <img src="images/icons/cycling.png" title="Strava">
+        <img src="images/icons/music.png" title="Spotify">
       </div>
-    </section>
-  </main>
-
+    </div>
+  </div>
+  
+  <!-- Windows -->
+  <div id="resume" class="window hidden">
+    <div class="titlebar">
+      <div class="close" onclick="closeWindow('resume')"></div>
+      <div class="min" onclick="minimize('resume')"></div>
+      <div class="max" onclick="maximize('resume')"></div>
+      <span>Resume.pdf</span>
+    </div>
+    <iframe src="images/resume.pdf" style="width:100%; height:calc(100% - 32px); border:none;"></iframe>
+  </div>
+  
+  <div id="projects" class="window hidden">
+    <div class="titlebar">
+      <div class="close" onclick="closeWindow('projects')"></div>
+      <div class="min" onclick="minimize('projects')"></div>
+      <div class="max" onclick="maximize('projects')"></div>
+      <span>Projects</span>
+    </div>
+    <div class="finder-content">
+      <h2>📁 My Projects</h2>
+      <div class="project-grid">
+        <div class="project">
+          <h3>Cycling Predictor</h3>
+          <p>ML model for race times (Python).</p>
+          <a href="https://github.com/yarikprylepa/project1">GitHub →</a>
+        </div>
+        <div class="project">
+          <h3>Data Viz Dashboard</h3>
+          <p>R/Shiny interactive plots.</p>
+          <a href="https://github.com/yarikprylepa/project2">GitHub →</a>
+        </div>
+        <div class="project">
+          <h3>SAS Analytics</h3>
+          <p>Stats models for uni project.</p>
+          <a href="https://github.com/yarikprylepa/project3">GitHub →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    let zIndex = 1;
+    const windows = {};
+    
+    function openWindow(id) {
+      const win = document.getElementById(id);
+      win.classList.remove('hidden');
+      win.style.zIndex = ++zIndex;
+      makeDraggable(win);
+    }
+    
+    function closeWindow(id) {
+      document.getElementById(id).classList.add('hidden');
+    }
+    
+    function minimize(id) { /* Hide to taskbar later */ }
+    function maximize(id) {
+      const win = document.getElementById(id);
+      win.style.width = '90%'; win.style.height = '80%';
+      win.style.top = '5%'; win.style.left = '5%';
+    }
+    
+    function makeDraggable(el) {
+      let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      el.querySelector('.titlebar').onmousedown = dragMouseDown;
+      
+      function dragMouseDown(e) {
+        e.preventDefault();
+        pos3 = e.clientX; pos4 = e.clientY;
+        document.onmouseup = closeDrag;
+        document.onmousemove = elementDrag;
+      }
+      
+      function elementDrag(e) {
+        pos1 = pos3 - e.clientX; pos2 = pos4 - e.clientY;
+        pos3 = e.clientX; pos4 = e.clientY;
+        el.style.top = (el.offsetTop - pos2) + "px";
+        el.style.left = (el.offsetLeft - pos1) + "px";
+      }
+      
+      function closeDrag() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+      }
+    }
+    
+    function openApp(app) {
+      if (app === 'terminal') openWindow('projects'); // Customize
+    }
+  </script>
 </body>
 </html>
