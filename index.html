@@ -26,41 +26,46 @@
             transform: scale(1.4);
             transform-origin: center;
         }
-        /* 16-Icon macOS Dock - Higher & Compact */
+        /* 9-Icon macOS Dock */
         .dock {
             position: fixed;
-            bottom: 110px; /* Higher, perfect under screen */
+            bottom: 130px;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(20px) saturate(180%);
-            border-radius: 16px;
-            padding: 4px 10px; /* Super tight */
+            border-radius: 20px;
+            padding: 12px 24px;
             box-shadow: 0 8px 32px rgba(0,0,0,0.1);
             display: flex;
-            gap: 4px; /* Minimal gaps for 16 icons */
+            gap: 10px;
             align-items: center;
         }
         .dock-icon {
-            width: 28px; /* Compact for 16 */
-            height: 28px;
-            border-radius: 8px;
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
             transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
             position: relative;
-            img { width: 100%; height: 100%; border-radius: inherit; }
+            flex-shrink: 0;
+            img { 
+                width: 100%; 
+                height: 100%; 
+                border-radius: inherit; 
+                display: block;
+            }
         }
         .dock-icon:hover {
-            transform: scale(1.5) translateY(-6px);
+            transform: scale(1.5) translateY(-8px);
             background: rgba(255, 255, 255, 0.6);
         }
-        /* Responsive */
         @media (max-width: 768px) {
-            .dock { bottom: 90px; padding: 3px 8px; gap: 3px; }
-            .dock-icon { width: 24px; height: 24px; }
+            .dock { bottom: 100px; padding: 8px 16px; gap: 6px; }
+            .dock-icon { width: 28px; height: 28px; }
         }
     </style>
 </head>
@@ -69,55 +74,16 @@
         <img src="images/macbook.png" alt="My MacBook">
     </div>
 
-    <nav class="dock" role="navigation" aria-label="Portfolio Links">
-        <a href="https://github.com/yarikprylepa" class="dock-icon" target="_blank" rel="noopener" title="GitHub">
-            <img src="images/icons/github.png" alt="GitHub">
-        </a>
-        <a href="https://www.linkedin.com/in/yprylepa/" class="dock-icon" target="_blank" rel="noopener" title="LinkedIn">
-            <img src="images/icons/linkedin.png" alt="LinkedIn">
-        </a>
-        <a href="#html" class="dock-icon" title="HTML">
-            <img src="images/icons/html.png" alt="HTML">
-        </a>
-        <a href="#css" class="dock-icon" title="CSS">
-            <img src="images/icons/css.png" alt="CSS">
-        </a>
-        <a href="#js" class="dock-icon" title="JavaScript">
-            <img src="images/icons/js.png" alt="JS">
-        </a>
-        <a href="#htmlcssjs" class="dock-icon" title="HTML/CSS/JS">
-            <img src="images/icons/htmlcssjs.png" alt="HTMLCSSJS">
-        </a>
-        <a href="#r" class="dock-icon" title="R">
-            <img src="images/icons/r.png" alt="R">
-        </a>
-        <a href="#python" class="dock-icon" title="Python">
-            <img src="images/icons/python.png" alt="Python">
-        </a>
-        <a href="#sass" class="dock-icon" title="Sass">
-            <img src="images/icons/sass.png" alt="Sass">
-        </a>
-        <a href="#spotify" class="dock-icon" title="Spotify">
-            <img src="images/icons/spotify.png" alt="Spotify">
-        </a>
-        <a href="#gmail" class="dock-icon" title="Gmail">
-            <img src="images/icons/gmail.png" alt="Gmail">
-        </a>
-        <a href="#git" class="dock-icon" title="Git">
-            <img src="images/icons/git.png" alt="Git">
-        </a>
-        <a href="#github" class="dock-icon" title="GitHub Desktop">
-            <img src="images/icons/github.png" alt="GitHub Desktop">
-        </a>
-        <a href="#html" class="dock-icon" title="HTML Desktop">
-            <img src="images/icons/html.png" alt="HTML Desktop">
-        </a>
-        <a href="#css" class="dock-icon" title="CSS Desktop">
-            <img src="images/icons/css.png" alt="CSS Desktop">
-        </a>
-        <a href="#js" class="dock-icon" title="JS Desktop">
-            <img src="images/icons/js.png" alt="JS Desktop">
-        </a>
+    <nav class="dock" role="navigation" aria-label="Skills & Social">
+        <a href="#css" class="dock-icon" title="CSS"><img src="images/icons/css.png" alt="CSS"></a>
+        <a href="#html" class="dock-icon" title="HTML"><img src="images/icons/html.png" alt="HTML"></a>
+        <a href="#js" class="dock-icon" title="JavaScript"><img src="images/icons/js.png" alt="JS"></a>
+        <a href="https://github.com/yarikprylepa" class="dock-icon" target="_blank" rel="noopener" title="GitHub"><img src="images/icons/github.png" alt="GitHub"></a>
+        <a href="https://www.linkedin.com/in/yprylepa/" class="dock-icon" target="_blank" rel="noopener" title="LinkedIn"><img src="images/icons/linkedin.png" alt="LinkedIn"></a>
+        <a href="#python" class="dock-icon" title="Python"><img src="images/icons/python.png" alt="Python"></a>
+        <a href="#r" class="dock-icon" title="R"><img src="images/icons/r.png" alt="R"></a>
+        <a href="#sass" class="dock-icon" title="Sass"><img src="images/icons/sass.png" alt="Sass"></a>
+        <a href="#gmail" class="dock-icon" title="Gmail"><img src="images/icons/gmail.png" alt="Gmail"></a>
     </nav>
 </body>
 </html>
