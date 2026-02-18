@@ -3,87 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>yarikprylepa</title>
+    <title>Yarik Prylepa - Portfolio</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body {
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
             min-height: 100vh;
-            background: white;
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        h1 { 
+            font-size: clamp(2.5rem, 5vw, 4rem); 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 50px;
+        }
+        .skills {
             display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 50px 0;
             justify-content: center;
-            align-items: center;
-            position: relative;
         }
-        .macbook-container {
-            background: white;
-            padding: 40px;
-        }
-        img {
-            display: block;
-            width: auto;
-            height: 70vh;
-            max-width: 95vw;
-            transform: scale(1.4);
-            transform-origin: center;
-        }
-        /* 9-Icon macOS Dock */
-        .dock {
-            position: fixed;
-            bottom: 130px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(20px) saturate(180%);
-            border-radius: 20px;
-            padding: 12px 24px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-        .dock-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 10px;
+        .skill {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            img { width: 32px; height: 32px; }
+        }
+        .skill:hover {
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+        }
+        .contact {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 60px;
+            border-top: 1px solid #eee;
+        }
+        .contact a {
+            color: #667eea;
             text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-            position: relative;
-            flex-shrink: 0;
-            img { 
-                width: 100%; 
-                height: 100%; 
-                border-radius: inherit; 
-                display: block;
-            }
+            font-weight: 500;
         }
-        .dock-icon:hover {
-            transform: scale(1.5) translateY(-8px);
-            background: rgba(255, 255, 255, 0.6);
-        }
-        @media (max-width: 768px) {
-            .dock { bottom: 100px; padding: 8px 16px; gap: 6px; }
-            .dock-icon { width: 28px; height: 28px; }
+        @media (max-width: 640px) {
+            .skills { gap: 12px; }
+            .skill { width: 56px; height: 56px; }
         }
     </style>
 </head>
 <body>
-    <div class="macbook-container">
-        <img src="images/macbook.png" alt="My MacBook">
+    <div class="container">
+        <h1>Yarik Prylepa</h1>
+        <p class="subtitle">Maths & Stats with Data Science • University of Reading</p>
+        
+        <div class="skills" aria-label="Skills">
+            <div class="skill"><img src="images/icons/css.png" alt="CSS" loading="lazy"></div>
+            <div class="skill"><img src="images/icons/html.png" alt="HTML" loading="lazy"></div>
+            <div class="skill"><img src="images/icons/js.png" alt="JavaScript" loading="lazy"></div>
+            <div class="skill"><img src="images/icons/github.png" alt="GitHub" loading="lazy"></div>
+            <div class="skill"><img src="images/icons/linkedin.png" alt="LinkedIn" loading="lazy"></div>
+            <div class="skill"><img src="images/icons/python.png" alt="Python" loading="lazy"></div>
+            <div class="skill"><img src="images/icons/r.png" alt="R" loading="lazy"></div>
+            <div class="skill"><img src="images/icons/sass.png" alt="Sass" loading="lazy"></div>
+            <div class="skill"><img src="images/icons/gmail.png" alt="Gmail" loading="lazy"></div>
+        </div>
+        
+        <section class="contact">
+            <h2>Let's Connect</h2>
+            <p><a href="https://www.linkedin.com/in/yprylepa/">LinkedIn</a> • <a href="https://github.com/yarikprylepa">GitHub</a> • <a href="mailto:hi@yarikprylepa.com">Email</a></p>
+        </section>
     </div>
-
-    <nav class="dock" role="navigation" aria-label="Skills & Social">
-        <a href="#css" class="dock-icon" title="CSS"><img src="images/icons/css.png" alt="CSS"></a>
-        <a href="#html" class="dock-icon" title="HTML"><img src="images/icons/html.png" alt="HTML"></a>
-        <a href="#js" class="dock-icon" title="JavaScript"><img src="images/icons/js.png" alt="JS"></a>
-        <a href="https://github.com/yarikprylepa" class="dock-icon" target="_blank" rel="noopener" title="GitHub"><img src="images/icons/github.png" alt="GitHub"></a>
-        <a href="https://www.linkedin.com/in/yprylepa/" class="dock-icon" target="_blank" rel="noopener" title="LinkedIn"><img src="images/icons/linkedin.png" alt="LinkedIn"></a>
-        <a href="#python" class="dock-icon" title="Python"><img src="images/icons/python.png" alt="Python"></a>
-        <a href="#r" class="dock-icon" title="R"><img src="images/icons/r.png" alt="R"></a>
-        <a href="#sas" class="dock-icon" title="Sass"><img src="images/icons/sas.png" alt="SAS"></a>
-        <a href="#gmail" class="dock-icon" title="Gmail"><img src="images/icons/gmail.png" alt="Gmail"></a>
-    </nav>
 </body>
 </html>
