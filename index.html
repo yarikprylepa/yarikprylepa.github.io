@@ -5,25 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>yarikprylepa</title>
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            background-color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%;
+            background-color: white !important; /* Forces white override */
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
             font-family: Arial, sans-serif;
         }
         img {
-            transform: scale(1.5); /* Makes image 1.5x bigger */
-            max-width: 100%;
-            max-height: 100vh;
-            object-fit: contain; /* Keeps aspect ratio */
+            transform: scale(1.5); /* 1.5x bigger */
+            max-width: 90vmin; /* Responsive limit */
+            max-height: 90vmin;
+            height: auto;
+            object-fit: contain;
+            display: block; /* Removes inline gaps */
         }
     </style>
 </head>
 <body>
-    <img src="/images/macbook.png">
+    <img src="images/macbook.png" alt="My MacBook">
 </body>
 </html>
