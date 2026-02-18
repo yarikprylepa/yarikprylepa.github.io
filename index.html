@@ -12,7 +12,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative; /* For dock positioning */
+            position: relative;
         }
         .macbook-container {
             background: white;
@@ -26,42 +26,42 @@
             transform: scale(1.4);
             transform-origin: center;
         }
-        /* macOS Dock */
+        /* macOS Dock - Higher & Smaller */
         .dock {
             position: fixed;
-            bottom: 20px;
+            bottom: 80px; /* Shifted up ~60px, aligns under screen */
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.3); /* Glass effect */
-            backdrop-filter: blur(20px) saturate(180%); /* Retina blur */
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(20px) saturate(180%);
             border-radius: 16px;
-            padding: 8px 16px;
+            padding: 6px 14px; /* Tighter for more icons */
             box-shadow: 0 8px 32px rgba(0,0,0,0.1);
             display: flex;
-            gap: 12px;
+            gap: 8px; /* Smaller gaps */
             align-items: center;
         }
         .dock-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: 12px;
+            width: 36px; /* Smaller for more icons */
+            height: 36px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
+            font-size: 18px; /* Scaled down */
             color: #000;
             text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); /* Liquid bounce */
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
             position: relative;
         }
         .dock-icon:hover {
-            transform: scale(1.4) translateY(-8px); /* Magnify + lift */
+            transform: scale(1.4) translateY(-6px); /* Adjusted lift */
             background: rgba(255, 255, 255, 0.5);
         }
         /* Responsive */
         @media (max-width: 768px) {
-            .dock { bottom: 10px; padding: 6px 12px; gap: 8px; }
-            .dock-icon { width: 48px; height: 48px; font-size: 24px; }
+            .dock { bottom: 60px; padding: 4px 10px; gap: 6px; }
+            .dock-icon { width: 32px; height: 32px; font-size: 16px; }
         }
     </style>
 </head>
@@ -70,12 +70,15 @@
         <img src="images/macbook.png" alt="My MacBook">
     </div>
 
-    <nav class="dock" role="navigation" aria-label="Social Links">
-        <a href="https://github.com/yarikprylepa" class="dock-icon" target="_blank" rel="noopener" title="GitHub">📱</a>
-        <a href="https://linkedin.com/in/yprylepa/" class="dock-icon" target="_blank" rel="noopener" title="LinkedIn">💼</a>
-        <a href="#projects" class="dock-icon" title="Projects">📁</a>
+    <nav class="dock" role="navigation" aria-label="Social & Portfolio Links">
+        <a href="https://github.com/yarikprylepa" class="dock-icon" target="_blank" rel="noopener" title="GitHub">⚫</a>
+        <a href="https://www.linkedin.com/in/yprylepa/" class="dock-icon" target="_blank" rel="noopener" title="LinkedIn">🔵</a>
+        <a href="#about" class="dock-icon" title="About">📄</a>
+        <a href="#projects" class="dock-icon" title="Projects">💻</a>
+        <a href="#skills" class="dock-icon" title="Skills">⭐</a>
+        <a href="#resume" class="dock-icon" title="Resume">📜</a>
         <a href="#contact" class="dock-icon" title="Contact">✉️</a>
-        <a href="mailto:yaraslauprylepa@gmail.com" class="dock-icon" title="Email">📧</a>
+        <a href="mailto:hi@yarikprylepa.com" class="dock-icon" title="Email">📧</a>
     </nav>
 </body>
 </html>
