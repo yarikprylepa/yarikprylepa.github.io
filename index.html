@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yarik Prylepa</title>
+  <title>Yarik</title>
   <style>
     * {
       margin: 0;
@@ -13,21 +13,18 @@
 
     body {
       min-height: 100vh;
+      background: white;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 2rem;
-      padding: 2rem 1rem;
-      background: radial-gradient(circle at 20% 80%, #667eea 0%, #764ba2 50%, #f093fb 100%);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      color: #1f2937;
     }
 
     .macbook-container {
+      width: 90vw;
+      height: 90vh;
+      max-width: 1200px;
+      max-height: 800px;
       position: relative;
-      width: min(1200px, 95vw);
-      aspect-ratio: 16 / 10;
     }
 
     .macbook-frame {
@@ -36,19 +33,17 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-      z-index: 2;
     }
 
     .screen-display {
       position: absolute;
-      top: 12.2%;    /* Tuned for your M1 Pro mockup */
+      top: 12.2%;
       left: 6.1%;
       width: 86.8%;
       height: 77.5%;
       background: #000;
       border-radius: 16px 16px 0 0;
       overflow: hidden;
-      z-index: 1;
     }
 
     .desktop-wallpaper {
@@ -56,42 +51,16 @@
       inset: 0;
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
       background-image: url('images/wallpaper.jpg');
-    }
-
-    .name-tag {
-      text-align: center;
-      font-size: clamp(1.2rem, 3vw, 2rem);
-      font-weight: 600;
-      background: rgba(255,255,255,0.9);
-      backdrop-filter: blur(10px);
-      padding: 0.75rem 2rem;
-      border-radius: 50px;
-      border: 1px solid rgba(255,255,255,0.3);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-    }
-
-    @media (max-width: 768px) {
-      body { padding: 1rem; }
-      .macbook-container { width: 100%; }
     }
   </style>
 </head>
 <body>
-  <!-- MacBook Mockup -->
   <div class="macbook-container">
-    <img src="images/macbook.png" alt="MacBook Pro" class="macbook-frame">
-    
+    <img src="images/macbook.png" alt="" class="macbook-frame">
     <div class="screen-display">
       <div class="desktop-wallpaper"></div>
     </div>
-  </div>
-
-  <!-- Your name below -->
-  <div class="name-tag">
-    Yarik Prylepa
-    <br><small>Maths & Data Science @ Reading</small>
   </div>
 </body>
 </html>
