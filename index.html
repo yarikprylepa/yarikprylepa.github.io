@@ -5,30 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>yarikprylepa</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body {
-            height: 100%;
-            background-color: white !important; /* Forces white override */
-            display: flex !important;
-            justify-content: center !important;
-            align-items: center !important;
-            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .macbook-container {
+            background: white; /* Solid white behind MacBook */
+            padding: 40px; /* Ample white frame for rug edges */
         }
         img {
-            transform: scale(1.5); /* 1.5x bigger */
-            max-width: 90vmin; /* Responsive limit */
-            max-height: 90vmin;
-            height: auto;
-            object-fit: contain;
-            display: block; /* Removes inline gaps */
+            display: block;
+            width: auto;
+            height: 70vh; /* Natural proportion, fills viewport nicely */
+            max-width: 95vw;
         }
     </style>
 </head>
 <body>
-    <img src="images/macbook.png" alt="My MacBook">
+    <div class="macbook-container">
+        <img src="images/macbook.jpg" alt="My MacBook">
+    </div>
 </body>
 </html>
