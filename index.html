@@ -1,92 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>yarikprylepa</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
-        h1 { 
-            font-size: clamp(2.5rem, 5vw, 4rem); 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-        .subtitle {
-            font-size: 1.3rem;
-            color: #666;
-            margin-bottom: 50px;
-        }
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin: 50px 0;
-            justify-content: center;
-        }
-        .skill {
-            width: 64px;
-            height: 64px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            img { width: 32px; height: 32px; }
-        }
-        .skill:hover {
-            transform: translateY(-8px) scale(1.1);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.2);
-        }
-        .contact {
-            text-align: center;
-            margin-top: 60px;
-            padding-top: 60px;
-            border-top: 1px solid #eee;
-        }
-        .contact a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        @media (max-width: 640px) {
-            .skills { gap: 12px; }
-            .skill { width: 56px; height: 56px; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Yarik Prylepa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    /* Global */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      scroll-behavior: smooth;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f5f7;
+      color: #111827;
+    }
+
+    body {
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5vw;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #4b5563;
+      font-size: 0.95rem;
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: #111827;
+      transition: width 0.2s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Layout */
+    main {
+      padding-top: 80px; /* space for fixed navbar */
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 6rem 5vw 4rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    section p {
+      max-width: 720px;
+      margin-bottom: 1rem;
+      color: #4b5563;
+    }
+
+    /* Hero / intro */
+    #home {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: #6b7280;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .tag {
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #fff;
+      font-size: 0.8rem;
+      color: #4b5563;
+    }
+
+    /* Contact */
+    .contact-links {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .contact-links a {
+      text-decoration: none;
+      color: #111827;
+      font-size: 0.95rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+
+    .contact-links a:hover {
+      background: #f3f4f6;
+      transform: translateY(-1px);
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      header {
+        padding: 0 1rem;
+      }
+
+      nav a {
+        margin-left: 1rem;
+        font-size: 0.85rem;
+      }
+
+      section {
+        padding: 5rem 1.2rem 3rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Yarik Prylepa</h1>
-        <p class="subtitle">Maths & Stats with Data Science • University of Reading</p>
-        
-        <div class="skills" aria-label="Skills">
-            <div class="skill"><img src="images/icons/css.png" alt="CSS" loading="lazy"></div>
-            <div class="skill"><img src="images/icons/html.png" alt="HTML" loading="lazy"></div>
-            <div class="skill"><img src="images/icons/js.png" alt="JavaScript" loading="lazy"></div>
-            <div class="skill"><img src="images/icons/github.png" alt="GitHub" loading="lazy"></div>
-            <div class="skill"><img src="images/icons/linkedin.png" alt="LinkedIn" loading="lazy"></div>
-            <div class="skill"><img src="images/icons/python.png" alt="Python" loading="lazy"></div>
-            <div class="skill"><img src="images/icons/r.png" alt="R" loading="lazy"></div>
-            <div class="skill"><img src="images/icons/sas.png" alt="Sas" loading="lazy"></div>
-            <div class="skill"><img src="images/icons/gmail.png" alt="Gmail" loading="lazy"></div>
-        </div>
-        
-        <section class="contact">
-            <h2>Let's Connect</h2>
-            <p><a href="https://www.linkedin.com/in/yprylepa/">LinkedIn</a> • <a href="https://github.com/yarikprylepa">GitHub</a> • <a href="mailto:yaraslauprylepa@gmail.com">Email</a></p>
-        </section>
-    </div>
+
+  <header>
+    <div class="logo">Yarik Prylepa</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero / Intro -->
+    <section id="home">
+      <h1 class="hero-title">Student and part-time road cyclist</h1>
+      <p class="hero-subtitle">
+        Second‑year Mathematics and Statistics with Data Science student @ University of Reading
+      </p>
+      <div class="hero-tags">
+        <span class="tag">Python</span>
+        <span class="tag">R</span>
+        <span class="tag">SAS</span>
+        <span class="tag">Machine learning</span>
+        <span class="tag">Data visualization</span>
+      </div>
+      <p>
+        I enjoy building fun and useful projects –
+        from exploratory statistics and predictive models to personal hobby apps and websites
+      </p>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <h2>Projects</h2>
+      <p>
+        This part is still in development. Something exciting is coming.
+      </p>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>
+        Open to data science, machine learning and quantitative opportunities, as well as collaborations on interesting projects
+      </p>
+
+      <div class="contact-links">
+        <a href="mailto:yaraslauprylepa@gmail.com" target="_blank" rel="noopener">Email</a>
+        <a href="https://www.linkedin.com/in/yprylepa/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/yarikprylepa" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </section>
+  </main>
+
 </body>
 </html>
