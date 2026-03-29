@@ -35,8 +35,8 @@ mobileLinks.forEach(link => {
 
 // INTERSECTION OBSERVER FOR PERFORMANCE-FIRST FADE-INS
 const revealOptions = {
-  threshold: 0.15,
-  rootMargin: "0px 0px -50px 0px"
+  threshold: 0.1, // Trigger earlier (10% in view)
+  rootMargin: "0px" // No margin for maximum reliability
 };
 
 const revealObserver = new IntersectionObserver((entries, observer) => {
