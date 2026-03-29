@@ -132,6 +132,14 @@ window.addEventListener('scroll', () => {
   } else {
     header.classList.remove('scrolled');
   }
+
+  // CARPET REVEAL LOGIC
+  const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
+  if (scrollTotal > 0) {
+    const scrollPercent = window.scrollY / scrollTotal;
+    // Reveal carpet as we scroll (opacity 1.0 -> 0.0)
+    document.documentElement.style.setProperty('--reveal-opacity', 1 - scrollPercent);
+  }
 }, { passive: true });
 
 // Smooth Desktop Scrolling
@@ -148,16 +156,3 @@ navLinks.forEach(link => {
     }
   });
 });
-
-// SCROLL-DRIVEN CARPET REVEAL LOGIC
-const carpet = document.getElementById('carpet-bg');
-window.addEventListener('scroll', () => {
-  // Use scrollHeight - innerHeight to get total scrollable range
-  const bodyHeight = document.body.scrollHeight - window.innerHeight;
-  if (bodyHeight <= 0) return;
-  
-  const progress = window.scrollY / bodyHeight;
-  // Radius goes from 0 to 95 for maximum reveal at bottom
-  const radius = Math.min(progress * 110, 100); 
-  carpet.style.clipPath = `circle(${radius}% at 100% 100%)`;
-}, { passive: true });

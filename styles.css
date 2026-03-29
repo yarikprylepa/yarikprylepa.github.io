@@ -10,7 +10,9 @@
   --border-light: rgba(57, 62, 70, 0.2);
   --glass-bg: rgba(255, 255, 255, 0.85);
   --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --gradient-bg: linear-gradient(135deg, #FCFBF9 0%, #D7DCEA 25%, #A1B3D7 75%, #6581BF 100%);
+  /* Fixed Wallpaper Layer */
+  --wallpaper-url: url('images/wallpaper.jpg');
+  --gradient-bg: none; /* Replaced by wallpaper + reveal overlay */
   
   /* Toggle Base Colors */
   --toggle-bg: #E2E8F0;
@@ -70,68 +72,30 @@ html, body, section, div, h1, h2, h3, p, a, span, li, i, label, input, img, stro
 html, body {
   scroll-behavior: smooth;
   font-family: 'ClashGrotesk-Regular', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: transparent; /* TRANSPARENT TO SHOW BACKGROUND LAYERS */
+  background-image: var(--wallpaper-url);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
   color: var(--text-primary);
   overflow-x: hidden;
   line-height: 1.6;
 }
 
-/* FIXED BASE LAYER - ABSOLUTE BOTTOM */
-#base-bg {
+/* SCROLL REVEAL OVERLAY */
+body::before {
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: -2;
-  background: var(--gradient-bg);
-  transition: background 0.5s ease;
-}
-
-/* SCROLL-DRIVEN CARPET REVEAL LAYER - MIDDLE */
-#carpet-bg {
-  position: fixed !important;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-primary);
+  /* The variable below will be controlled by JS for the 'Carpet Reveal' */
+  opacity: var(--reveal-opacity, 1);
   z-index: -1;
-  background-image: url('images/wallpaper.jpg');
-  background-size: cover;
-  background-position: center bottom;
-  background-repeat: no-repeat;
-  clip-path: circle(0% at 100% 100%); /* Initial state: bottom-right hidden */
-  transition: clip-path 0.15s ease-out, opacity 0.5s ease;
-  will-change: clip-path;
-  opacity: 0.85; /* Light mode default */
-}
-
-#carpet-bg::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, transparent 80%);
   pointer-events: none;
-}
-
-[data-theme="dark"] #carpet-bg {
-  opacity: 0.7;
-}
-
-[data-theme="dark"] #carpet-bg::after {
-  background: linear-gradient(135deg, rgba(13, 17, 23, 0.5) 0%, transparent 80%);
-}
-
-/* Ensure headings maintain focus against the wallpaper */
-.hero-title, h2, h3 {
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-}
-
-[data-theme="dark"] .hero-title, [data-theme="dark"] h2, [data-theme="dark"] h3 {
-  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
 }
 
 /* Navbar */
