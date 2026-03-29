@@ -148,3 +148,16 @@ navLinks.forEach(link => {
     }
   });
 });
+
+// SCROLL-DRIVEN CARPET REVEAL LOGIC
+const carpet = document.getElementById('carpet-bg');
+window.addEventListener('scroll', () => {
+  // Use scrollHeight - innerHeight to get total scrollable range
+  const bodyHeight = document.body.scrollHeight - window.innerHeight;
+  if (bodyHeight <= 0) return;
+  
+  const progress = window.scrollY / bodyHeight;
+  // Radius goes from 0 to 95 for maximum reveal at bottom
+  const radius = Math.min(progress * 110, 100); 
+  carpet.style.clipPath = `circle(${radius}% at 100% 100%)`;
+}, { passive: true });

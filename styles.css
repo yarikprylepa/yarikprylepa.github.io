@@ -1,7 +1,7 @@
 /* THEME VARIABLES */
 :root {
   /* Light Mode Palette */
-  --bg-primary: #ffffff;
+  --bg-primary: #FCFBF9;
   --bg-card: #FFFFFF;
   --text-primary: #222831;
   --text-secondary: #393E46;
@@ -10,9 +10,7 @@
   --border-light: rgba(57, 62, 70, 0.2);
   --glass-bg: rgba(255, 255, 255, 0.85);
   --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-
-  /* Carpet Theme */
-  --carpet-overlay: rgba(180, 100, 60, 0.04);
+  --gradient-bg: linear-gradient(135deg, #FCFBF9 0%, #D7DCEA 25%, #A1B3D7 75%, #6581BF 100%);
   
   /* Toggle Base Colors */
   --toggle-bg: #E2E8F0;
@@ -29,7 +27,7 @@
 
 [data-theme="dark"] {
   /* Dark Mode Palette */
-  --bg-primary: #0d1117;
+  --bg-primary: #121212;
   --bg-card: #1E1E1E;
   --text-primary: #F0F2F5;
   --text-secondary: #E0E2E5;
@@ -38,9 +36,7 @@
   --border-light: rgba(255, 255, 255, 0.1);
   --glass-bg: rgba(12, 12, 12, 0.85);
   --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
-  
-  /* Carpet Theme Dark */
-  --carpet-overlay: rgba(0, 0, 0, 0.5);
+  --gradient-bg: linear-gradient(135deg, #0A0A0A 0%, #121212 25%, #1F2937 75%, #111827 100%);
   
   /* Toggle Dark State */
   --toggle-bg: #334155;
@@ -74,10 +70,57 @@ html, body, section, div, h1, h2, h3, p, a, span, li, i, label, input, img, stro
 html, body {
   scroll-behavior: smooth;
   font-family: 'ClashGrotesk-Regular', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: var(--bg-primary);
+  background: var(--gradient-bg);
+  background-attachment: scroll;
   color: var(--text-primary);
   overflow-x: hidden;
   line-height: 1.6;
+}
+
+/* SCROLL-DRIVEN CARPET REVEAL LAYER */
+#carpet-bg {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: url('images/wallpaper.jpg');
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  clip-path: circle(0% at 100% 100%); /* Initial state: bottom-right hidden */
+  transition: clip-path 0.15s ease-out, opacity 0.5s ease;
+  will-change: clip-path;
+  opacity: 0.85; /* Light mode default */
+}
+
+#carpet-bg::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, transparent 80%);
+  pointer-events: none;
+}
+
+[data-theme="dark"] #carpet-bg {
+  opacity: 0.7;
+}
+
+[data-theme="dark"] #carpet-bg::after {
+  background: linear-gradient(135deg, rgba(13, 17, 23, 0.5) 0%, transparent 80%);
+}
+
+/* Ensure headings maintain focus against the wallpaper */
+.hero-title, h2, h3 {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .hero-title, [data-theme="dark"] h2, [data-theme="dark"] h3 {
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
 }
 
 /* Navbar */
@@ -165,50 +208,7 @@ nav a.active::after {
   width: 100%;
 }
 
-/* GLOBAL CARPET BACKGROUND */
-html {
-  background: var(--bg-primary);
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-image: url('images/wallpaper.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: -2;
-  transition: opacity 0.4s ease-in-out;
-  pointer-events: none;
-}
-
-body::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: var(--carpet-overlay);
-  z-index: -1;
-  transition: background 0.4s ease-in-out;
-  pointer-events: none;
-}
-
-#home * {
-  position: relative;
-  z-index: 10;
-}
-
-/* Ensure footer text is legible */
-.footer-text, .footer-social {
-  position: relative;
-  z-index: 10;
-}
+/* PILL-SHAPED TOGGLE SWITCH */
 .theme-switch-wrapper {
   display: flex;
   align-items: center;
