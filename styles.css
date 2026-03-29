@@ -75,11 +75,11 @@ html, body {
 
 /* Navbar */
 header {
-  position: fixed;
+  position: fixed !important;
   top: 0;
   left: 0;
   right: 0;
-  height: 72px;
+  height: 80px; /* Slightly taller for more presence */
   background: var(--glass-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -88,8 +88,22 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 0 8vw;
-  z-index: 1000;
-  transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 9999 !important; /* Extremely high to stay on top */
+  transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              background 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* COMPACT STATE ON SCROLL */
+header.scrolled {
+  height: 64px;
+  background: var(--bg-card); /* Solid background for legibility on scroll */
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] header.scrolled {
+  background: var(--bg-card);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
 }
 
 .logo {

@@ -131,14 +131,13 @@ const header = document.querySelector('header');
 const navLinks = document.querySelectorAll('nav a');
 
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) {
-    header.style.height = '64px';
-    header.style.boxShadow = '0 10px 30px -10px rgba(0,0,0,0.1)';
+  // Use class toggle for CSS performance
+  if (window.scrollY > 40) {
+    header.classList.add('scrolled');
   } else {
-    header.style.height = '72px';
-    header.style.boxShadow = 'none';
+    header.classList.remove('scrolled');
   }
-}, { passive: true }); // Better performance
+}, { passive: true });
 
 // Smooth Desktop Scrolling
 navLinks.forEach(link => {
