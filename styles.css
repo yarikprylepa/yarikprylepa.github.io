@@ -60,6 +60,10 @@ html, body, section, div, h1, h2, h3, p, a, span, li, i, label, input, img, stro
               color 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
               box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
               transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Surgically apply will-change only to performance-heavy elements */
+.card, .project-card, .skill-item, .reveal, .timeline-item {
   will-change: transform, opacity;
 }
 
