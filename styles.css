@@ -89,9 +89,20 @@ header {
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-light);
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 0 8vw;
   z-index: 11000 !important; /* Above everything including overlay */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* TRANSPARENT HEADER WHEN MENU IS OPEN */
+header.menu-open {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
 }
 
 /* COMPACT STATE ON SCROLL */

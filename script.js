@@ -23,6 +23,7 @@ const mobileLinks = document.querySelectorAll('.mobile-nav a');
 function toggleMobileMenu() {
   menuBtn.classList.toggle('open');
   mobileNav.classList.toggle('open');
+  header.classList.toggle('menu-open');
   document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : 'auto';
 }
 
