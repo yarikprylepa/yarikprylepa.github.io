@@ -21,9 +21,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    /* COLOR VARIABLES - Maintaining your original theme */
+    /* THEME VARIABLES */
     :root {
-      --bg-primary: #DFD0B8;
+      /* Light Mode (Original Theme) */
+      --bg-primary: #FCFBF9;
       --bg-card: #FFFFFF;
       --text-primary: #222831;
       --text-secondary: #393E46;
@@ -33,6 +34,21 @@
       --glass-bg: rgba(255, 255, 255, 0.85);
       --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --gradient-bg: linear-gradient(135deg, #FCFBF9 0%, #D7DCEA 25%, #A1B3D7 75%, #6581BF 100%);
+    }
+
+    [data-theme="dark"] {
+      /* Dark Mode Palette */
+      --bg-primary: #121212;
+      --bg-card: #1E1E1E;
+      --text-primary: #F0F2F5;
+      --text-secondary: #E0E2E5;
+      --text-muted: #9BA3AF;
+      --accent-primary: #8AB4F8;
+      --border-light: rgba(255, 255, 255, 0.1);
+      --glass-bg: rgba(18, 18, 18, 0.85);
+      --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+      --gradient-bg: linear-gradient(135deg, #0A0A0A 0%, #121212 25%, #1F2937 75%, #111827 100%);
     }
 
     /* Global styles */
@@ -46,10 +62,11 @@
     body {
       scroll-behavior: smooth;
       font-family: 'ClashGrotesk-Regular', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: linear-gradient(135deg, #FCFBF9 0%, #D7DCEA 25%, #A1B3D7 75%, #6581BF 100%);
+      background: var(--gradient-bg);
       color: var(--text-primary);
       overflow-x: hidden;
       line-height: 1.6;
+      transition: background 0.5s ease;
     }
 
     body {
@@ -83,6 +100,12 @@
       font-size: 1.2rem;
     }
 
+    .nav-container {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
     nav {
       display: flex;
       gap: 1.5rem;
@@ -111,6 +134,34 @@
     nav a:hover::after,
     nav a.active::after {
       width: 100%;
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border-light);
+      color: var(--text-primary);
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      font-size: 1.2rem;
+    }
+
+    .theme-toggle:hover {
+      background: var(--accent-primary);
+      color: white;
+      border-color: var(--accent-primary);
+      transform: rotate(15deg);
+    }
+
+    [data-theme="dark"] .fa-moon,
+    [data-theme="light"] .fa-sun {
+      display: none;
     }
 
     /* Layout Components */
@@ -146,6 +197,12 @@
       object-fit: contain;
       margin-bottom: 1.25rem;
       display: block;
+      filter: var(--logo-filter, none);
+    }
+
+    [data-theme="dark"] .company-logo {
+      /* Subtly brighten logos if needed for dark mode */
+      filter: brightness(1.1);
     }
 
     /* Hero / intro */
@@ -156,7 +213,6 @@
       min-height: 100vh;
     }
 
-    /* Face Interactive Container */
     .face-animation-container {
       position: relative;
       display: inline-block;
@@ -173,16 +229,14 @@
       transition: transform 0.3s ease;
     }
 
-    /* ALWAYS on the right side logic */
     .face-bubble {
       position: absolute;
-      left: calc(100% + 15px); /* Position it to the right of the face with a gap */
+      left: calc(100% + 15px);
       top: 50%;
-      transform: translateY(-50%) translateX(10px); /* Slightly shifted for the pop animation */
-      background: white;
+      transform: translateY(-50%) translateX(10px);
+      background: var(--bg-card); /* Respond to theme */
       padding: 0.65rem 1rem;
       
-      /* Pixelated styling */
       border: 4px solid #000;
       box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.15);
       border-radius: 0;
@@ -200,19 +254,26 @@
       z-index: 10;
     }
 
-    /* Arrow pointing to the face from the left side of the bubble */
+    [data-theme="dark"] .face-bubble {
+      border-color: #F0F2F5;
+      box-shadow: 4px 4px 0px 0px rgba(255,255,255,0.15);
+    }
+
     .face-bubble::after {
       content: "";
       position: absolute;
-      left: -14px; /* Move arrow to the left side of the bubble */
+      left: -14px;
       top: 50%;
       transform: translateY(-50%);
       border-top: 10px solid transparent;
       border-bottom: 10px solid transparent;
-      border-right: 10px solid #000; /* Mirror the arrow box to point to the face */
+      border-right: 10px solid #000;
     }
 
-    /* Smooth activation triggers */
+    [data-theme="dark"] .face-bubble::after {
+      border-right-color: #F0F2F5;
+    }
+
     .face-animation-container:hover .face-bubble, 
     .face-animation-container.active .face-bubble {
       opacity: 1 !important;
@@ -490,8 +551,12 @@
       transition: var(--transition);
     }
 
+    [data-theme="dark"] .skill-item {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
     .skill-item:hover {
-      background: white;
+      background: var(--bg-card);
       transform: scale(1.05);
       border-color: var(--accent-primary);
       box-shadow: var(--card-shadow);
@@ -557,7 +622,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.05);
     }
 
     .footer-text {
@@ -570,6 +635,14 @@
       header {
         padding: 0 5vw;
         height: 64px;
+      }
+
+      .logo {
+        font-size: 1rem;
+      }
+
+      .nav-container {
+        gap: 0.75rem;
       }
 
       nav {
@@ -606,6 +679,9 @@
         border-right: 8px solid #000 !important;
         border-left: none !important;
       }
+      [data-theme="dark"] .face-bubble::after {
+        border-right-color: #F0F2F5 !important;
+      }
       .face-animation-container:hover .face-bubble, 
       .face-animation-container.active .face-bubble {
         opacity: 1 !important;
@@ -619,14 +695,20 @@
 
   <header id="navbar">
     <div class="logo">Yarik Prylepa</div>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#education">Education</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="nav-container">
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <i class="fas fa-sun"></i>
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
   </header>
 
   <main>
@@ -854,6 +936,23 @@
   </footer>
 
   <script>
+    // Theme Toggling Logic
+    const themeToggle = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+    
+    // Check for saved theme or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    
+    const currentTheme = savedTheme || systemTheme;
+    htmlElement.setAttribute('data-theme', currentTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const newTheme = htmlElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      htmlElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+
     // Reveal sections on scroll
     const reveals = document.querySelectorAll('.reveal');
 
@@ -879,7 +978,6 @@
     function startTalking() {
       if (animInterval) return;
       animInterval = setInterval(() => {
-        // Cycle between face2 and face3 for talking effect
         currentFrame = currentFrame === 1 ? 2 : 1;
         faceImg.src = frames[currentFrame];
       }, 150);
@@ -907,7 +1005,6 @@
     const navLinks = document.querySelectorAll('nav a');
 
     window.addEventListener('scroll', () => {
-      // Header sticky effect
       if (window.scrollY > 50) {
         navbar.style.height = '64px';
         navbar.style.boxShadow = '0 10px 30px -10px rgba(0,0,0,0.1)';
@@ -916,7 +1013,6 @@
         navbar.style.boxShadow = 'none';
       }
 
-      // Active nav links
       let current = '';
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
@@ -936,11 +1032,9 @@
       reveal();
     });
 
-    // Initial reveal
     window.addEventListener('load', reveal);
     reveal();
 
-    // Smooth scroll for nav links
     navLinks.forEach(link => {
       link.addEventListener('click', function (e) {
         e.preventDefault();
