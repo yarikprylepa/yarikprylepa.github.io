@@ -297,17 +297,24 @@ input:checked+.slider:before {
   color: var(--accent-primary);
 }
 
-/* X BUTTON TOP RIGHT OF OVERLAY - ALIGNED WITH STRIPES */
+/* X BUTTON TOP RIGHT OF OVERLAY - PERFECTLY SYNCED WITH STRIPES */
 .nav-close-btn {
   position: absolute;
-  top: 24px;   /* Exact vertical align with logo/stripes */
-  right: 5vw;  /* Exact horizontal align with stripes */
-  font-size: 2rem;
+  top: 0;
+  right: 8vw; /* Same as header padding */
+  height: 80px; /* Same as header height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px; /* Same as hamburger width */
   color: var(--text-primary);
   cursor: pointer;
-  line-height: 1;
-  padding: 10px;
   z-index: 10001;
+}
+
+/* Adjust close button height when header is scrolled */
+header.scrolled + #mobile-nav .nav-close-btn {
+  height: 64px;
 }
 
 /* Layout Components */
