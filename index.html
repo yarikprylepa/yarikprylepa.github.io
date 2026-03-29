@@ -9,15 +9,18 @@
   <link rel="stylesheet" href="fonts/clash-grotesk.css">
 
   <style>
-    /* COLOR VARIABLES - Edit these to change the whole site */
+    /* COLOR VARIABLES - Sleek, Modern, and Professional */
     :root {
-      --bg-primary: #DFD0B8;
-      --bg-card: #FFFFFF;
-      --text-primary: #222831;
-      --text-secondary: #393E46;
-      --text-muted: #7C8898;
-      --accent-primary: #5A7ACD;
-      --border-light: #393e46; 
+      --bg-primary: #0f172a; /* Deep Slate Blue */
+      --bg-card: rgba(30, 41, 59, 0.7); /* Translucent Slate */
+      --text-primary: #f8fafc; /* Near White */
+      --text-secondary: #cbd5e1; /* Soft Gray Blue */
+      --text-muted: #94a3b8; /* Muted Slate */
+      --accent-primary: #38bdf8; /* Bright Sky Blue */
+      --accent-secondary: #818cf8; /* Indigo Accent */
+      --border-light: rgba(255, 255, 255, 0.1);
+      --glass-bg: rgba(15, 23, 42, 0.8);
+      --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
     }
 
     /* Global */
@@ -30,8 +33,32 @@
     html, body {
       scroll-behavior: smooth;
       font-family: 'ClashGrotesk-Regular', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: linear-gradient(135deg, #FCFBF9 0%, #D7DCEA 25%, #A1B3D7 75%, #6581BF 100%);
+      background-color: var(--bg-primary);
       color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    /* Dynamic Mesh Gradient Background */
+    .bg-mesh {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      background: radial-gradient(at 0% 0%, hsla(222, 47%, 11%, 1) 0, transparent 50%),
+                  radial-gradient(at 50% 0%, hsla(217, 91%, 60%, 0.15) 0, transparent 50%),
+                  radial-gradient(at 100% 0%, hsla(199, 89%, 48%, 0.1) 0, transparent 50%),
+                  radial-gradient(at 50% 100%, hsla(217, 91%, 60%, 0.1) 0, transparent 50%),
+                  radial-gradient(at 0% 100%, hsla(222, 47%, 11%, 1) 0, transparent 50%);
+      filter: blur(80px);
+      opacity: 0.8;
+      animation: meshShift 20s infinite alternate ease-in-out;
+    }
+
+    @keyframes meshShift {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.1); }
     }
 
     body {
@@ -44,15 +71,17 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 64px;
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(8px);
+      height: 72px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-light);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 5vw;
+      padding: 0 8vw;
       z-index: 1000;
+      transition: all 0.3s ease;
     }
 
     .logo {
@@ -100,14 +129,15 @@
 
     section h2 {
       font-family: 'ClashGrotesk-Bold', sans-serif;
-      font-size: 2rem;
-      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
       color: var(--text-primary);
     }
 
     section p {
       max-width: 720px;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
       color: var(--text-secondary);
     }
 
@@ -116,35 +146,110 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      min-height: 100vh;
     }
 
     .hero-title {
       font-family: 'ClashGrotesk-Bold', sans-serif;
-      font-size: clamp(2.2rem, 4vw, 3rem);
-      margin-bottom: 0.5rem;
-      color: var(--text-primary);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(to right, #f8fafc, #38bdf8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em;
     }
 
     .hero-subtitle {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       color: var(--text-muted);
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
     }
 
     .hero-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }
 
     .tag {
-      padding: 0.25rem 0.7rem;
+      padding: 0.35rem 1rem;
       border-radius: 999px;
       border: 1px solid var(--border-light);
+      background: rgba(255, 255, 255, 0.03);
+      font-size: 0.85rem;
+      color: var(--accent-primary);
+      font-family: 'ClashGrotesk-Medium', sans-serif;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .tag:hover {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: var(--accent-primary);
+      transform: translateY(-2px);
+    }
+
+    /* Project Cards */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .project-card {
       background: var(--bg-card);
-      font-size: 0.8rem;
+      border: 1px solid var(--border-light);
+      border-radius: 24px;
+      padding: 2.5rem;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .project-card:hover {
+      transform: translateY(-12px);
+      border-color: var(--accent-primary);
+      box-shadow: var(--card-shadow);
+      background: rgba(30, 41, 59, 0.9);
+    }
+
+    .project-card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .project-card p {
+      font-size: 1rem;
       color: var(--text-secondary);
+      margin-bottom: 0;
+      line-height: 1.7;
+    }
+
+    .project-card .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: auto;
+    }
+
+    /* Scroll Reveal Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* Contact */
@@ -171,21 +276,29 @@
 
     .contact-links a:hover {
       background: var(--accent-primary);
-      transform: translateY(-1px);
+      transform: translateY(-4px);
       border-color: var(--accent-primary);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
     }
 
     .contact-links img {
-      width: 28px;
-      height: 28px;
+      width: 24px;
+      height: 24px;
       display: block;
       object-fit: contain;
+      filter: invert(1);
+      transition: all 0.3s ease;
+    }
+
+    .contact-links a:hover img {
+      filter: invert(0);
+      transform: scale(1.1);
     }
 
     /* Responsive */
     @media (max-width: 640px) {
       header {
-        padding: 0 1rem;
+        padding: 0 1.5rem;
       }
 
       nav a {
@@ -194,12 +307,17 @@
       }
 
       section {
-        padding: 5rem 1.2rem 3rem;
+        padding: 5rem 1.5rem 3rem;
+      }
+      
+      .hero-title {
+        font-size: 2.5rem;
       }
     }
   </style>
 </head>
 <body>
+  <div class="bg-mesh"></div>
 
   <header>
     <div class="logo">Yarik Prylepa</div>
@@ -212,7 +330,7 @@
 
   <main>
     <!-- Hero / Intro -->
-    <section id="home">
+    <section id="home" class="reveal active">
       <h1 class="hero-title">Student and part-time road cyclist</h1>
       <p class="hero-subtitle">
         Second‑year Mathematics and Statistics with Data Science student @ University of Reading
@@ -231,15 +349,41 @@
     </section>
 
     <!-- Projects -->
-    <section id="projects">
+    <section id="projects" class="reveal">
       <h2>Projects</h2>
-      <p>
-        This part is still in development. Something exciting is coming.
-      </p>
+      <div class="project-grid">
+        <div class="project-card">
+          <h3>Predictive Analytics Dashboard</h3>
+          <p>An interactive dashboard built with Python and Streamlit to visualize and predict market trends using ensemble learning.</p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">Streamlit</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <h3>Cycling Performance Tracker</h3>
+          <p>A data-driven application for road cyclists to analyze heart rate zones and power output using R and Shiny.</p>
+          <div class="project-tags">
+            <span class="tag">R</span>
+            <span class="tag">Shiny</span>
+            <span class="tag">Data viz</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <h3>ML Regression for Housing</h3>
+          <p>Exploratory data analysis and predictive modeling to estimate property values with high accuracy using SAS and Python.</p>
+          <div class="project-tags">
+            <span class="tag">SAS</span>
+            <span class="tag">Python</span>
+            <span class="tag">Regression</span>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Contact -->
-    <section id="contact">
+    <section id="contact" class="reveal">
       <h2>Contact</h2>
       <p>
         Open to data science, machine learning and quantitative opportunities, as well as collaborations on interesting projects
@@ -259,5 +403,39 @@
     </section>
   </main>
 
+  <script>
+    // Reveal sections on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const windowHeight = window.innerHeight;
+    const revealPoint = 150;
+
+    function reveal() {
+      reveals.forEach(r => {
+        const revealTop = r.getBoundingClientRect().top;
+        if (revealTop < windowHeight - revealPoint) {
+          r.classList.add('active');
+        }
+      });
+    }
+
+    // Scroll-based header transformation
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        header.style.padding = '0 5vw';
+        header.style.height = '64px';
+        header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.2)';
+      } else {
+        header.style.padding = '0 8vw';
+        header.style.height = '72px';
+        header.style.boxShadow = 'none';
+      }
+      reveal();
+    });
+
+    // Initial check
+    window.addEventListener('load', reveal);
+    reveal();
+  </script>
 </body>
 </html>
