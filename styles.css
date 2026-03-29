@@ -470,7 +470,17 @@ section p {
 .timeline {
   position: relative;
   padding-left: 2rem;
-  border-left: 2px solid var(--border-light);
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 13px; /* Centers with first dot */
+  bottom: 0;
+  width: 2px;
+  background: var(--border-light);
+  transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .timeline-item {
@@ -482,7 +492,7 @@ section p {
 .timeline-item::before {
   content: "";
   position: absolute;
-  left: calc(-2rem - 1px);
+  left: -2rem;
   top: 7px;
   width: 12px;
   height: 12px;
@@ -809,7 +819,7 @@ footer {
   }
 
   .timeline-item::before {
-    left: calc(-1.5rem - 1px);
+    left: -1.5rem;
     transform: translateX(-50%);
     top: 7px;
   }
