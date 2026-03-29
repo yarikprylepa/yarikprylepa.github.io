@@ -78,13 +78,14 @@ document.querySelectorAll('section').forEach(section => {
   spyObserver.observe(section);
 });
 
-// STAGGERED REVEALS FOR CARDS & LISTS
-const staggerContainers = document.querySelectorAll('.experience-grid, .project-grid, .skills-grid');
+// STAGGERED REVEALS FOR CARDS, LISTS & TIMELINE
+const staggerContainers = document.querySelectorAll('.experience-grid, .project-grid, .skills-grid, .timeline');
 staggerContainers.forEach(container => {
   const children = container.children;
   Array.from(children).forEach((child, index) => {
-    child.style.transitionDelay = `${index * 100}ms`;
+    // Add reveal class dynamically to children
     child.classList.add('reveal');
+    child.style.transitionDelay = `${index * 100}ms`;
     revealObserver.observe(child);
   });
 });
