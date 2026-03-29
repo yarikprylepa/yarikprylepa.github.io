@@ -132,14 +132,6 @@ window.addEventListener('scroll', () => {
   } else {
     header.classList.remove('scrolled');
   }
-
-  // CARPET REVEAL LOGIC
-  const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
-  if (scrollTotal > 0) {
-    const scrollPercent = window.scrollY / scrollTotal;
-    // Reveal carpet as we scroll (opacity 1.0 -> 0.0)
-    document.documentElement.style.setProperty('--reveal-opacity', 1 - scrollPercent);
-  }
 }, { passive: true });
 
 // Smooth Desktop Scrolling
