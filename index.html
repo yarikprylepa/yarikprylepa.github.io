@@ -156,10 +156,11 @@
       min-height: 100vh;
     }
 
+    /* Face Interactive Container */
     .face-animation-container {
       position: relative;
       display: inline-block;
-      width: clamp(100px, 12vw, 150px); /* Slightly smaller head to make room on mobile */
+      width: clamp(100px, 12vw, 150px);
       margin-bottom: 2rem;
       cursor: pointer;
     }
@@ -172,11 +173,12 @@
       transition: transform 0.3s ease;
     }
 
+    /* ALWAYS on the right side logic */
     .face-bubble {
       position: absolute;
-      left: 110%; /* Always on the right side */
+      left: calc(100% + 15px); /* Position it to the right of the face with a gap */
       top: 50%;
-      transform: translateY(-50%) translateX(20px);
+      transform: translateY(-50%) translateX(10px); /* Slightly shifted for the pop animation */
       background: white;
       padding: 0.65rem 1rem;
       
@@ -185,7 +187,7 @@
       box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.15);
       border-radius: 0;
       font-family: 'Courier New', Courier, monospace;
-      font-size: 0.75rem; /* Slightly smaller for mobile compatibility */
+      font-size: 0.75rem;
       font-weight: bold;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -198,21 +200,23 @@
       z-index: 10;
     }
 
-    /* Pixelated Pointer pointing left */
+    /* Arrow pointing to the face from the left side of the bubble */
     .face-bubble::after {
       content: "";
       position: absolute;
-      left: -14px;
+      left: -14px; /* Move arrow to the left side of the bubble */
       top: 50%;
       transform: translateY(-50%);
       border-top: 10px solid transparent;
       border-bottom: 10px solid transparent;
-      border-right: 10px solid #000;
+      border-right: 10px solid #000; /* Mirror the arrow box to point to the face */
     }
 
-    .face-animation-container:hover .face-bubble, .face-animation-container.active .face-bubble {
-      opacity: 1;
-      transform: translateY(-50%) translateX(0);
+    /* Smooth activation triggers */
+    .face-animation-container:hover .face-bubble, 
+    .face-animation-container.active .face-bubble {
+      opacity: 1 !important;
+      transform: translateY(-50%) translateX(0) !important;
     }
 
     .hero-title {
@@ -584,25 +588,28 @@
         padding-left: 1.5rem;
       }
 
-      /* KEEP face bubble on the right on mobile */
+      /* ROBUST Force Right-Side on Mobile */
       .face-bubble {
-        left: 105%;
-        top: 50%;
-        transform: translateY(-50%) translateX(10px);
-        font-size: 0.65rem;
-        padding: 0.5rem 0.75rem;
+        left: calc(100% + 5px) !important;
+        top: 50% !important;
+        transform: translateY(-50%) translateX(10px) !important;
+        font-size: 0.6rem !important;
+        padding: 0.4rem 0.6rem !important;
+        white-space: nowrap !important;
       }
       .face-bubble::after {
-        left: -14px;
-        top: 50%;
-        transform: translateY(-50%);
-        border-top: 8px solid transparent;
-        border-bottom: 8px solid transparent;
-        border-right: 8px solid #000;
-        border-left: none; /* Ensure no left border */
+        left: -14px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        border-top: 8px solid transparent !important;
+        border-bottom: 8px solid transparent !important;
+        border-right: 8px solid #000 !important;
+        border-left: none !important;
       }
-      .face-animation-container:hover .face-bubble, .face-animation-container.active .face-bubble {
-        transform: translateY(-50%) translateX(0);
+      .face-animation-container:hover .face-bubble, 
+      .face-animation-container.active .face-bubble {
+        opacity: 1 !important;
+        transform: translateY(-50%) translateX(0) !important;
       }
     }
   </style>
