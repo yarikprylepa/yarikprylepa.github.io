@@ -2,14 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Yarik Prylepa</title>
+  <title>Yarik Prylepa | Data Science Student & Cyclist</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- ClashGrotesk Font -->
+  <meta name="description" content="Portfolio of Yaraslau (Yarik) Prylepa, a second-year BSc Mathematics and Statistics with Data Science student at the University of Reading. Predicted First Class. Road cyclist and entrepreneur.">
+  <meta name="keywords" content="Data Science, Mathematics, Statistics, Python, R, SAS, Machine Learning, UI/UX, Cycling, University of Reading">
+  
+  <!-- Fonts & Icons -->
   <link rel="stylesheet" href="fonts/clash-grotesk.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    /* COLOR VARIABLES - Restored to your original palette */
+    /* COLOR VARIABLES - Maintaining your original theme */
     :root {
       --bg-primary: #DFD0B8;
       --bg-card: #FFFFFF;
@@ -18,11 +21,12 @@
       --text-muted: #7C8898;
       --accent-primary: #5A7ACD;
       --border-light: rgba(57, 62, 70, 0.2); 
-      --glass-bg: rgba(255, 255, 255, 0.8);
-      --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --glass-bg: rgba(255, 255, 255, 0.85);
+      --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Global */
+    /* Global styles */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -36,9 +40,6 @@
       background-attachment: fixed;
       color: var(--text-primary);
       overflow-x: hidden;
-    }
-
-    body {
       line-height: 1.6;
     }
 
@@ -58,23 +59,29 @@
       justify-content: space-between;
       padding: 0 8vw;
       z-index: 1000;
-      transition: all 0.3s ease;
+      transition: var(--transition);
     }
 
     .logo {
-      font-family: 'ClashGrotesk-Semibold', 'ClashGrotesk-Regular', sans-serif;
+      font-family: 'ClashGrotesk-Semibold', sans-serif;
       font-weight: 600;
       letter-spacing: 0.03em;
       color: var(--text-primary);
+      font-size: 1.2rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
     }
 
     nav a {
-      margin-left: 1.5rem;
       text-decoration: none;
       color: var(--text-secondary);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       position: relative;
-      font-family: 'ClashGrotesk-Medium', 'ClashGrotesk-Regular', sans-serif;
+      font-family: 'ClashGrotesk-Medium', sans-serif;
+      transition: var(--transition);
     }
 
     nav a::after {
@@ -85,140 +92,324 @@
       width: 0;
       height: 2px;
       background: var(--accent-primary);
-      transition: width 0.2s ease;
+      transition: width 0.3s ease;
     }
 
-    nav a:hover::after {
+    nav a:hover::after, nav a.active::after {
       width: 100%;
     }
 
-    /* Layout */
+    /* Layout Components */
     main {
-      padding-top: 80px; /* space for fixed navbar */
+      padding-top: 72px;
     }
 
     section {
-      min-height: 100vh;
-      padding: 6rem 5vw 4rem;
-      max-width: 960px;
+      min-height: 80vh;
+      padding: 8rem 8vw 5rem;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
-    section h2 {
+    h2 {
       font-family: 'ClashGrotesk-Bold', sans-serif;
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      color: var(--text-primary);
-    }
-
-    section p {
-      max-width: 720px;
-      margin-bottom: 1.5rem;
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-    }
-
-    /* Hero / intro */
-    #home {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-height: 100vh;
-    }
-
-    .hero-title {
-      font-family: 'ClashGrotesk-Bold', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
+      font-size: 2.8rem;
+      margin-bottom: 3rem;
       color: var(--text-primary);
       letter-spacing: -0.02em;
     }
 
+    /* Hero Section */
+    #home {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 90vh;
+    }
+
+    .hero-title {
+      font-family: 'ClashGrotesk-Bold', sans-serif;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+    }
+
     .hero-subtitle {
-      font-size: 1.2rem;
-      color: var(--text-muted);
+      font-size: 1.25rem;
+      color: var(--text-secondary);
       margin-bottom: 2rem;
-      max-width: 600px;
+      max-width: 750px;
     }
 
     .hero-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 2.5rem;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
     }
 
     .tag {
-      padding: 0.35rem 1rem;
+      padding: 0.4rem 1.2rem;
       border-radius: 999px;
       border: 1px solid var(--border-light);
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(255, 255, 255, 0.4);
       font-size: 0.85rem;
-      color: var(--accent-primary);
+      color: var(--text-secondary);
       font-family: 'ClashGrotesk-Medium', sans-serif;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: var(--transition);
     }
 
     .tag:hover {
-      background: rgba(56, 189, 248, 0.1);
-      border-color: var(--accent-primary);
+      background: var(--accent-primary);
+      color: white;
       transform: translateY(-2px);
     }
 
-    /* Project Cards */
+    /* Education Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+      border-left: 2px solid var(--border-light);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 4rem;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: calc(-2rem - 6px);
+      top: 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+      border: 4px solid var(--bg-primary);
+    }
+
+    .timeline-content h3 {
+      font-family: 'ClashGrotesk-Semibold', sans-serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-date {
+      font-size: 0.9rem;
+      color: var(--accent-primary);
+      font-family: 'ClashGrotesk-Medium', sans-serif;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .timeline-content ul {
+      list-style-type: none;
+      margin-top: 1rem;
+    }
+
+    .timeline-content li {
+      margin-bottom: 0.5rem;
+      color: var(--text-secondary);
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .timeline-content li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent-primary);
+    }
+
+    /* Experience Cards */
+    .experience-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      padding: 2.5rem;
+      transition: var(--transition);
+      box-shadow: var(--card-shadow);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h3 {
+      font-family: 'ClashGrotesk-Semibold', sans-serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      font-family: 'ClashGrotesk-Medium', sans-serif;
+    }
+
+    .card-bullets {
+      list-style: none;
+    }
+
+    .card-bullets li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    .card-bullets li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent-primary);
+    }
+
+    /* Projects Section */
     .project-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2.5rem;
-      margin-top: 3rem;
     }
 
     .project-card {
-      background: var(--bg-card);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .project-card p {
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .project-links {
+      margin-top: auto;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn {
+      text-decoration: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-family: 'ClashGrotesk-Medium', sans-serif;
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background: var(--accent-primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    /* Skills Grid */
+    .skills-section {
+      margin-bottom: 4rem;
+    }
+
+    .skills-section h3 {
+      font-family: 'ClashGrotesk-Semibold', sans-serif;
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-item {
+      background: rgba(255, 255, 255, 0.4);
       border: 1px solid var(--border-light);
-      border-radius: 24px;
-      padding: 2.5rem;
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative;
-      overflow: hidden;
+      border-radius: 12px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      transition: var(--transition);
+    }
+
+    .skill-item:hover {
+      background: white;
+      transform: scale(1.05);
+      border-color: var(--accent-primary);
+    }
+
+    .skill-item i {
+      font-size: 1.5rem;
+      color: var(--accent-primary);
+    }
+
+    .skill-item span {
+      font-size: 0.85rem;
+      font-family: 'ClashGrotesk-Medium', sans-serif;
+    }
+
+    /* Contact Links */
+    .contact-wrapper {
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
     }
 
-    .project-card:hover {
-      transform: translateY(-12px);
-      border-color: var(--accent-primary);
-      box-shadow: var(--card-shadow);
-      background: var(--bg-card);
-    }
-
-    .project-card h3 {
-      font-size: 1.6rem;
-      margin-bottom: 0.5rem;
-      color: var(--text-primary);
-    }
-
-    .project-card p {
-      font-size: 1rem;
-      color: var(--text-secondary);
-      margin-bottom: 0;
-      line-height: 1.7;
-    }
-
-    .project-card .project-tags {
+    .contact-item {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: auto;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: var(--transition);
     }
 
-    /* Scroll Reveal Animation */
+    .contact-item i {
+      width: 40px;
+      height: 40px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-primary);
+      transition: var(--transition);
+    }
+
+    .contact-item:hover i {
+      background: var(--accent-primary);
+      color: white;
+      transform: rotate(360deg);
+    }
+
+    /* Scroll animations */
     .reveal {
       opacity: 0;
-      transform: translateY(40px);
-      transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
     }
 
     .reveal.active {
@@ -226,169 +417,272 @@
       transform: translateY(0);
     }
 
-    /* Contact */
-    .contact-links {
-      margin-top: 1rem;
+    /* Footer */
+    footer {
+      padding: 4rem 8vw;
+      border-top: 1px solid var(--border-light);
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    .contact-links a {
-      display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      width: 48px;
-      height: 48px;
-      border-radius: 999px;
-      border: 1px solid var(--border-light);
-      background: var(--bg-card);
-      text-decoration: none;
-      transition: all 0.15s ease;
-      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.2);
     }
 
-    .contact-links a:hover {
-      background: var(--accent-primary);
-      transform: translateY(-4px);
-      border-color: var(--accent-primary);
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    .footer-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
     }
 
-    .contact-links img {
-      width: 24px;
-      height: 24px;
-      display: block;
-      object-fit: contain;
-      transition: all 0.3s ease;
-    }
-
-    .contact-links a:hover img {
-      transform: scale(1.1);
-    }
-
-    /* Responsive */
-    @media (max-width: 640px) {
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
       header {
-        padding: 0 1.5rem;
-      }
-
-      nav a {
-        margin-left: 1rem;
-        font-size: 0.85rem;
-      }
-
-      section {
-        padding: 5rem 1.5rem 3rem;
+        padding: 0 5vw;
+        height: 60px;
       }
       
-      .hero-title {
-        font-size: 2.5rem;
+      nav {
+        display: none; /* In a real app, implement a hamburger menu */
+      }
+      
+      section {
+        padding: 6rem 5vw 3rem;
+      }
+
+      h2 {
+        font-size: 2.2rem;
+      }
+
+      .card-meta {
+        flex-direction: column;
+        gap: 0.25rem;
       }
     }
   </style>
 </head>
 <body>
-  <header>
+
+  <header id="navbar">
     <div class="logo">Yarik Prylepa</div>
     <nav>
       <a href="#home">Home</a>
+      <a href="#education">Education</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <main>
-    <!-- Hero / Intro -->
+    <!-- Hero Section -->
     <section id="home" class="reveal active">
-      <h1 class="hero-title">Student and part-time road cyclist</h1>
+      <h1 class="hero-title">Yaraslau (Yarik)<br>Prylepa</h1>
       <p class="hero-subtitle">
-        Second‑year Mathematics and Statistics with Data Science student @ University of Reading
+        Second-year <strong>BSc Mathematics and Statistics with Data Science</strong> student @ University of Reading. Predicted First Class (2024-2028). Ambitious data scientist, road cyclist, and entrepreneurial spirit.
       </p>
       <div class="hero-tags">
-        <span class="tag">Python</span>
-        <span class="tag">R</span>
-        <span class="tag">SAS</span>
-        <span class="tag">Machine learning</span>
-        <span class="tag">Data visualization</span>
+        <span class="tag"><i class="fas fa-chart-line"></i> Data Science</span>
+        <span class="tag"><i class="fas fa-calculator"></i> Mathematics</span>
+        <span class="tag"><i class="fas fa-robot"></i> Machine Learning</span>
+        <span class="tag"><i class="fas fa-bicycle"></i> Road Cyclist</span>
+        <span class="tag"><i class="fas fa-lightbulb"></i> Entrepreneur</span>
       </div>
-      <p>
-        I enjoy building fun and useful projects –
-        from exploratory statistics and predictive models to personal hobby apps and websites
-      </p>
+      <div class="contact-wrapper">
+        <a href="mailto:yaraslauprylepa@gmail.com" class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>yaraslauprylepa@gmail.com</span>
+        </a>
+      </div>
     </section>
 
-    <!-- Experience -->
+    <!-- Education Section -->
+    <section id="education" class="reveal">
+      <h2>Education</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-date">Sep 2024 — June 2028</span>
+          <div class="timeline-content">
+            <h3>BSc Mathematics and Statistics with Data Science</h3>
+            <p>University of Reading | Reading, UK</p>
+            <ul>
+              <li><strong>Predicted First Class Honors</strong></li>
+              <li>Relevant Modules: Probability and Statistics, Linear Models and Data Analysis, Linear Algebra, Calculus</li>
+              <li>Selected for University of Melbourne Year Abroad (among 4/180 students)</li>
+              <li>Active Course Representative & Leader in Societies (Entrepreneurship, Consulting, Maths)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-date">2022 — 2024</span>
+          <div class="timeline-content">
+            <h3>The Buckingham School</h3>
+            <p>A-Levels: Maths, Physics, Biology</p>
+            <p>GCSEs: 9 total (grades 4-9), including English and Maths</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
     <section id="experience" class="reveal">
       <h2>Experience</h2>
-      <div class="project-grid">
-        <div class="project-card">
-          <h3>Your Role Title</h3>
-          <p>Company Name | 2023 - Present</p>
-          <p>Brief description of your responsibilities and achievements in this role.</p>
+      <div class="experience-grid">
+        <div class="card">
+          <h3>Tech Statistician (Summer Placement)</h3>
+          <div class="card-meta">
+            <span>Abbott Incoming Placement</span>
+            <span>Jul 2026 — Sep 2027</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Providing statistical support for Tech R&D on glucose monitoring devices.</li>
+            <li>Applying hypothesis testing, regression analysis, and process control methodologies.</li>
+            <li>Collaborating across functional teams to ensure high data integrity and device accuracy.</li>
+          </ul>
         </div>
-        <div class="project-card">
-          <h3>Previous Role</h3>
-          <p>Previous Company | 2022 - 2023</p>
-          <p>Brief description of your impact and technical contributions.</p>
+
+        <div class="card">
+          <h3>Commis Chef</h3>
+          <div class="card-meta">
+            <span>University of Reading</span>
+            <span>Sep 2025 — Present</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Managing high-pressure meal preparation for 200+ students daily.</li>
+            <li>Optimizing culinary workflows and ensuring 100% health & safety compliance.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Simulated Experience Programs</h3>
+          <div class="card-meta">
+            <span>Remote Simulations (Forage)</span>
+            <span>2024 — 2025</span>
+          </div>
+          <ul class="card-bullets">
+            <li><strong>JPMorgan Chase:</strong> Investment Banking simulation—M&A target identification and DCF modeling.</li>
+            <li><strong>Deloitte:</strong> Technology simulation—Python automation for JSON unification and Matplotlib dashboards.</li>
+            <li><strong>Accenture:</strong> Data Analyst simulation—End-to-end data cleaning, modeling, and 10-slide strategy decks.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Warehouse Operative</h3>
+          <div class="card-meta">
+            <span>Hauraton (Northampton)</span>
+            <span>Jul 2025 — Sep 2025</span>
+          </div>
+          <ul class="card-bullets">
+            <li>Achieved 99% accuracy in picking and packing operations.</li>
+            <li>Ensured strict compliance with H&S protocols in a fast-paced environment.</li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <!-- Projects -->
+    <!-- Projects Section -->
     <section id="projects" class="reveal">
       <h2>Projects</h2>
       <div class="project-grid">
-        <div class="project-card">
-          <h3>100 Routine</h3>
-          <p>Exploratory analysis and prediction of my daily routine</p>
-          <div class="project-tags">
-            <span class="tag">Python</span>
-            <span class="tag">Matplotlib</span>
-            <span class="tag">Scikit-learn</span>
-          </div>
-        </div>
-        <div class="project-card">
-          <h3>Cycly</h3>
-          <p>A community-driven app that helps cyclists to find new routes and much more</p>
-          <div class="project-tags">
+        <div class="card project-card">
+          <h3>Cycly App</h3>
+          <p>An entrepreneurial mobile application designed to enhance the riding experience and build a local community. Features user-added spots like cafes and attractions with a rewards points system.</p>
+          <div class="hero-tags" style="margin-bottom: 1.5rem;">
             <span class="tag">SwiftUI</span>
             <span class="tag">MapKit</span>
             <span class="tag">Supabase</span>
           </div>
+          <div class="project-links">
+            <a href="#" class="btn btn-primary">Case Study</a>
+            <a href="https://github.com/yarikprylepa" class="btn btn-secondary">GitHub</a>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <h3>100Routine Analysis</h3>
+          <p>A data science project tracking 16 personal variables over 40 days. Used regression modeling to identify productivity drivers, resulting in a +20% improvement through optimized sleep patterns.</p>
+          <div class="hero-tags" style="margin-bottom: 1.5rem;">
+            <span class="tag">Python</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">Scikit-learn</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="btn btn-primary">View Findings</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" class="reveal">
-      <h2>Contact</h2>
-      <p>
-        Open to data science, machine learning and quantitative opportunities, as well as collaborations on interesting projects
-      </p>
+    <!-- Skills Section -->
+    <section id="skills" class="reveal">
+      <h2>Skills</h2>
+      <div class="skills-section">
+        <h3>Technical Stack</h3>
+        <div class="skills-grid">
+          <div class="skill-item"><i class="fab fa-python"></i><span>Python</span></div>
+          <div class="skill-item"><i class="fas fa-chart-area"></i><span>R & SAS</span></div>
+          <div class="skill-item"><i class="fas fa-table"></i><span>Pandas</span></div>
+          <div class="skill-item"><i class="fas fa-code"></i><span>HTML/CSS/JS</span></div>
+          <div class="skill-item"><i class="fab fa-swift"></i><span>Swift</span></div>
+          <div class="skill-item"><i class="fas fa-cloud"></i><span>Azure</span></div>
+          <div class="skill-item"><i class="fas fa-file-excel"></i><span>Advanced Excel</span></div>
+        </div>
+      </div>
 
-      <div class="contact-links">
-        <a href="mailto:yaraslauprylepa@gmail.com" target="_blank" rel="noopener">
-          <img src="images/icons/gmail.png" alt="Email" loading="lazy">
+      <div class="skills-section">
+        <h3>Languages</h3>
+        <div class="skills-grid">
+          <div class="skill-item"><span>Russian (Native)</span></div>
+          <div class="skill-item"><span>English (Native)</span></div>
+          <div class="skill-item"><span>French (Basic)</span></div>
+          <div class="skill-item"><span>Ukrainian (Basic)</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="reveal">
+      <h2>Get In Touch</h2>
+      <div class="contact-wrapper">
+        <p style="margin-bottom: 2rem; color: var(--text-secondary);">Currently open to 2026/27 placement opportunities, data science internships, and collaborative tech projects.</p>
+        <a href="mailto:yaraslauprylepa@gmail.com" class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <span style="font-family: 'ClashGrotesk-Semibold';">Email</span><br>
+            <span style="color: var(--text-secondary);">yaraslauprylepa@gmail.com</span>
+          </div>
         </a>
-        <a href="https://www.linkedin.com/in/yprylepa/" target="_blank" rel="noopener">
-          <img src="images/icons/linkedin.png" alt="LinkedIn" loading="lazy">
+        <a href="https://www.linkedin.com/in/yprylepa" target="_blank" class="contact-item">
+          <i class="fab fa-linkedin"></i>
+          <div>
+            <span style="font-family: 'ClashGrotesk-Semibold';">LinkedIn</span><br>
+            <span style="color: var(--text-secondary);">linkedin.com/in/yprylepa</span>
+          </div>
         </a>
-        <a href="https://github.com/yarikprylepa" target="_blank" rel="noopener">
-          <img src="images/icons/github.png" alt="GitHub" loading="lazy">
+        <a href="https://github.com/yarikprylepa" target="_blank" class="contact-item">
+          <i class="fab fa-github"></i>
+          <div>
+            <span style="font-family: 'ClashGrotesk-Semibold';">GitHub</span><br>
+            <span style="color: var(--text-secondary);">github.com/yarikprylepa</span>
+          </div>
         </a>
       </div>
     </section>
   </main>
 
+  <footer>
+    <div class="footer-text">© 2025 Yarik Prylepa. Built with passion & data.</div>
+    <div class="footer-social">
+      <a href="#home" style="color: var(--accent-primary); text-decoration: none; font-family: 'ClashGrotesk-Medium';">Back to Top ↑</a>
+    </div>
+  </footer>
+
   <script>
     // Reveal sections on scroll
     const reveals = document.querySelectorAll('.reveal');
-    const windowHeight = window.innerHeight;
-    const revealPoint = 150;
-
+    
     function reveal() {
+      const windowHeight = window.innerHeight;
+      const revealPoint = 100;
+      
       reveals.forEach(r => {
         const revealTop = r.getBoundingClientRect().top;
         if (revealTop < windowHeight - revealPoint) {
@@ -397,24 +691,57 @@
       });
     }
 
-    // Scroll-based header transformation
-    const header = document.querySelector('header');
+    // Sticky Header & Active Nav Links
+    const navbar = document.getElementById('navbar');
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav a');
+
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 20) {
-        header.style.padding = '0 5vw';
-        header.style.height = '64px';
-        header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.2)';
+      // Header sticky effect
+      if (window.scrollY > 50) {
+        navbar.style.height = '64px';
+        navbar.style.boxShadow = '0 10px 30px -10px rgba(0,0,0,0.1)';
       } else {
-        header.style.padding = '0 8vw';
-        header.style.height = '72px';
-        header.style.boxShadow = 'none';
+        navbar.style.height = '72px';
+        navbar.style.boxShadow = 'none';
       }
+
+      // Active nav links
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= (sectionTop - 150)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href').includes(current)) {
+          a.classList.add('active');
+        }
+      });
+
       reveal();
     });
 
-    // Initial check
+    // Initial reveal
     window.addEventListener('load', reveal);
     reveal();
+
+    // Smooth scroll for nav links
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        window.scrollTo({
+          top: targetElement.offsetTop - 70,
+          behavior: 'smooth'
+        });
+      });
+    });
   </script>
 </body>
 </html>
