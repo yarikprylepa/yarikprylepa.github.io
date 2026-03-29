@@ -1,3 +1,32 @@
+/* TYPOGRAPHY */
+@font-face {
+  font-family: 'ClashGrotesk-Bold';
+  src: url('fonts/ClashGrotesk-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ClashGrotesk-Semibold';
+  src: url('fonts/ClashGrotesk-Semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ClashGrotesk-Medium';
+  src: url('fonts/ClashGrotesk-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ClashGrotesk-Regular';
+  src: url('fonts/ClashGrotesk-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
 /* THEME VARIABLES */
 :root {
   /* Light Mode Palette */
