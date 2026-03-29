@@ -89,10 +89,8 @@ header {
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-light);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: 0 8vw;
-  z-index: 1000 !important; /* High, but under the overlay */
+  z-index: 11000 !important; /* Above everything including overlay */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -297,19 +295,9 @@ input:checked+.slider:before {
   color: var(--accent-primary);
 }
 
-/* X BUTTON TOP RIGHT OF OVERLAY - PERFECTLY SYNCED WITH STRIPES */
+/* X BUTTON DISABLED - WE USE THE ANIMATED HAMBURGER ABOVE */
 .nav-close-btn {
-  position: absolute;
-  top: 0;
-  right: 8vw; /* Same as header padding */
-  height: 80px; /* Same as header height */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px; /* Same as hamburger width */
-  color: var(--text-primary);
-  cursor: pointer;
-  z-index: 10001;
+  display: none;
 }
 
 /* Adjust close button height when header is scrolled */

@@ -17,26 +17,19 @@ toggleSwitch.addEventListener('change', (e) => {
 
 // MOBILE MENU LOGIC
 const menuBtn = document.getElementById('menu-btn');
-const closeBtn = document.getElementById('close-btn');
 const mobileNav = document.getElementById('mobile-nav');
 const mobileLinks = document.querySelectorAll('.mobile-nav a');
 
-function closeMobileMenu() {
-  menuBtn.classList.remove('open');
-  mobileNav.classList.remove('open');
-  document.body.style.overflow = 'auto';
+function toggleMobileMenu() {
+  menuBtn.classList.toggle('open');
+  mobileNav.classList.toggle('open');
+  document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : 'auto';
 }
 
-menuBtn.addEventListener('click', () => {
-  menuBtn.classList.add('open');
-  mobileNav.classList.add('open');
-  document.body.style.overflow = 'hidden';
-});
-
-closeBtn.addEventListener('click', closeMobileMenu);
+menuBtn.addEventListener('click', toggleMobileMenu);
 
 mobileLinks.forEach(link => {
-  link.addEventListener('click', closeMobileMenu);
+  link.addEventListener('click', toggleMobileMenu);
 });
 
 // INTERSECTION OBSERVER FOR PERFORMANCE-FIRST FADE-INS
