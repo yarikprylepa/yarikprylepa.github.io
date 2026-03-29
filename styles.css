@@ -1,7 +1,7 @@
 /* THEME VARIABLES */
 :root {
   /* Light Mode Palette */
-  --bg-primary: #FCFBF9;
+  --bg-primary: #ffffff;
   --bg-card: #FFFFFF;
   --text-primary: #222831;
   --text-secondary: #393E46;
@@ -10,7 +10,9 @@
   --border-light: rgba(57, 62, 70, 0.2);
   --glass-bg: rgba(255, 255, 255, 0.85);
   --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --gradient-bg: linear-gradient(135deg, #FCFBF9 0%, #D7DCEA 25%, #A1B3D7 75%, #6581BF 100%);
+
+  /* Carpet Theme */
+  --carpet-overlay: rgba(180, 100, 60, 0.04);
   
   /* Toggle Base Colors */
   --toggle-bg: #E2E8F0;
@@ -27,7 +29,7 @@
 
 [data-theme="dark"] {
   /* Dark Mode Palette */
-  --bg-primary: #121212;
+  --bg-primary: #0d1117;
   --bg-card: #1E1E1E;
   --text-primary: #F0F2F5;
   --text-secondary: #E0E2E5;
@@ -36,7 +38,9 @@
   --border-light: rgba(255, 255, 255, 0.1);
   --glass-bg: rgba(12, 12, 12, 0.85);
   --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
-  --gradient-bg: linear-gradient(135deg, #0A0A0A 0%, #121212 25%, #1F2937 75%, #111827 100%);
+  
+  /* Carpet Theme Dark */
+  --carpet-overlay: rgba(0, 0, 0, 0.5);
   
   /* Toggle Dark State */
   --toggle-bg: #334155;
@@ -70,8 +74,7 @@ html, body, section, div, h1, h2, h3, p, a, span, li, i, label, input, img, stro
 html, body {
   scroll-behavior: smooth;
   font-family: 'ClashGrotesk-Regular', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: var(--gradient-bg);
-  background-attachment: scroll;
+  background: var(--bg-primary);
   color: var(--text-primary);
   overflow-x: hidden;
   line-height: 1.6;
@@ -162,7 +165,56 @@ nav a.active::after {
   width: 100%;
 }
 
-/* PILL-SHAPED TOGGLE SWITCH */
+/* CARPET OVERLAY EFFECTS ON HOME & FOOTER */
+#home,
+footer {
+  position: relative;
+  overflow: hidden;
+}
+
+#home::before,
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('wallpaper.jpg');
+  background-size: cover;
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  mask-image: radial-gradient(ellipse 70% 80% at 100% 100%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 80% at 100% 100%, black 20%, transparent 70%);
+  z-index: -2;
+  transition: opacity 0.4s ease-in-out;
+}
+
+#home::after,
+footer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--carpet-overlay);
+  mask-image: radial-gradient(ellipse 70% 80% at 100% 100%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 80% at 100% 100%, black 20%, transparent 70%);
+  z-index: -1;
+  transition: background 0.4s ease-in-out;
+}
+
+#home * {
+  position: relative;
+  z-index: 10;
+}
+
+/* Ensure footer text is legible */
+.footer-text, .footer-social {
+  position: relative;
+  z-index: 10;
+}
 .theme-switch-wrapper {
   display: flex;
   align-items: center;
