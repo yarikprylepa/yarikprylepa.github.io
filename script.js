@@ -83,22 +83,10 @@ const staggerContainers = document.querySelectorAll('.experience-grid, .project-
 staggerContainers.forEach(container => {
   const children = container.children;
   Array.from(children).forEach((child, index) => {
-    // If it's a timeline, animate the content inside separately to keep dots fixed
-    if (child.classList.contains('timeline-item')) {
-      const date = child.querySelector('.timeline-date');
-      const content = child.querySelector('.timeline-content');
-      [date, content].forEach(el => {
-        if (el) {
-          el.classList.add('reveal');
-          el.style.transitionDelay = `${index * 100}ms`;
-          revealObserver.observe(el);
-        }
-      });
-    } else {
-      child.classList.add('reveal');
-      child.style.transitionDelay = `${index * 100}ms`;
-      revealObserver.observe(child);
-    }
+    // Add reveal class dynamically to children
+    child.classList.add('reveal');
+    child.style.transitionDelay = `${index * 100}ms`;
+    revealObserver.observe(child);
   });
 });
 
