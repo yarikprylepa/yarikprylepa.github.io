@@ -23,7 +23,7 @@
   <style>
     /* THEME VARIABLES */
     :root {
-      /* Light Mode (Original Theme) */
+      /* Light Mode Palette */
       --bg-primary: #FCFBF9;
       --bg-card: #FFFFFF;
       --text-primary: #222831;
@@ -33,17 +33,15 @@
       --border-light: rgba(57, 62, 70, 0.2);
       --glass-bg: rgba(255, 255, 255, 0.85);
       --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       --gradient-bg: linear-gradient(135deg, #FCFBF9 0%, #D7DCEA 25%, #A1B3D7 75%, #6581BF 100%);
       
-      /* Toggle Colors */
+      /* Toggle Base Colors */
       --toggle-bg: #E2E8F0;
       --toggle-knob: #FFFFFF;
-      --toggle-accent: #FFD700;
       
-      /* Target Theme Colors for Icons */
-      --dark-theme-color: #121212;
-      --light-theme-color: #FCFBF9;
+      /* Swapped Reference Colors for Toggle Icons */
+      --light-icon-color: #FCFBF9;
+      --dark-icon-color: #121212;
     }
 
     [data-theme="dark"] {
@@ -59,10 +57,9 @@
       --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
       --gradient-bg: linear-gradient(135deg, #0A0A0A 0%, #121212 25%, #1F2937 75%, #111827 100%);
       
-      /* Toggle Dark Colors */
+      /* Toggle Dark State */
       --toggle-bg: #334155;
       --toggle-knob: #1E293B;
-      --toggle-accent: #E2E8F0;
     }
 
     /* Global styles */
@@ -70,7 +67,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      /* GLOBAL THEME TRANSITION - Smoother overall feeling */
+      /* GLOBAL THEME TRANSITION - Silky smooth feeling */
       transition: background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
     }
 
@@ -79,7 +76,7 @@
       scroll-behavior: smooth;
       font-family: 'ClashGrotesk-Regular', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--gradient-bg);
-      background-attachment: scroll; /* Ensuring gradient smoothness on scroll */
+      background-attachment: scroll;
       color: var(--text-primary);
       overflow-x: hidden;
       line-height: 1.6;
@@ -159,7 +156,7 @@
     .theme-switch {
       position: relative;
       display: inline-block;
-      width: 60px; /* Slimmer for modern look */
+      width: 60px;
       height: 32px;
       cursor: pointer;
       user-select: none;
@@ -192,16 +189,17 @@
       transition: 0.4s;
     }
 
-    /* Sun Icon (Left) colored with dark theme color */
+    /* THEME ICON SWAP LOGIC */
+    /* Light Theme color for Sun (Left) */
     .slider .fa-sun {
-      color: var(--dark-theme-color);
+      color: var(--light-icon-color);
       opacity: 1;
     }
 
-    /* Crescent Moon Icon (Right) colored with light theme color */
+    /* Dark Theme color for Crescent Moon (Right) */
     .slider .fa-moon {
-      color: var(--light-theme-color);
-      opacity: 0.8;
+      color: var(--dark-icon-color);
+      opacity: 0.6; /* Balanced visibility in Light Mode */
     }
 
     .slider:before {
@@ -223,11 +221,13 @@
       transform: translateX(28px);
     }
 
-    input:checked + .slider .fa-sun {
-      opacity: 0.4;
+    [data-theme="dark"] .slider .fa-sun {
+      color: var(--dark-icon-color);
+      opacity: 0.5;
     }
 
-    input:checked + .slider .fa-moon {
+    [data-theme="dark"] .slider .fa-moon {
+      color: var(--light-icon-color);
       opacity: 1;
     }
 
@@ -266,7 +266,7 @@
       display: block;
     }
 
-    /* Hero / intro */
+    /* Hero */
     #home {
       display: flex;
       flex-direction: column;
@@ -433,7 +433,7 @@
       color: var(--accent-primary);
     }
 
-    /* Experience Cards */
+    /* Experience */
     .experience-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -487,7 +487,7 @@
       color: var(--accent-primary);
     }
 
-    /* Project Cards */
+    /* Projects */
     .project-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -552,7 +552,6 @@
     .btn-primary {
       background: var(--accent-primary);
       color: white;
-      transition: none; /* Already covered by global * transition */
     }
 
     .btn-secondary {
@@ -764,7 +763,7 @@
   </header>
 
   <main>
-    <!-- Hero / Intro -->
+    <!-- Hero -->
     <section id="home" class="reveal active">
       <div id="face-interactive" class="face-animation-container">
         <div class="face-bubble">Welcome to my portfolio!</div>
