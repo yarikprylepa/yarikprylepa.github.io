@@ -49,16 +49,40 @@ const revealObserver = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('active');
-      // No need to unobserve if you want it to trigger again, 
-      // but typically portfolio reveals are "one-shot"
       observer.unobserve(entry.target);
     }
   });
 }, revealOptions);
 
-// TARGET REVEAL ELEMENTS
+// SCROLL-SPY: HIGHLIGHT ACTIVE NAV LINKS
+const navItems = document.querySelectorAll('nav a, .mobile-nav a');
+const spyOptions = {
+  threshold: 0.5, // Highlight when section is 50% in view
+  rootMargin: "-70px 0px 0px 0px" // Account for fixed header height
+};
+
+const spyObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href') === `#${id}`) {
+          item.classList.add('active');
+        }
+      });
+    }
+  });
+}, spyOptions);
+
+// TARGET REVEAL AND SPY ELEMENTS
 const revealElements = document.querySelectorAll('.reveal');
 revealElements.forEach(el => revealObserver.observe(el));
+
+// Observe all sections for Scroll-Spy
+document.querySelectorAll('section').forEach(section => {
+  spyObserver.observe(section);
+});
 
 // STAGGERED REVEALS FOR CARDS & LISTS
 const staggerContainers = document.querySelectorAll('.experience-grid, .project-grid, .skills-grid');
