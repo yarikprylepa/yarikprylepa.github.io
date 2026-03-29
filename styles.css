@@ -83,7 +83,7 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  height: 80px; /* Slightly taller for more presence */
+  height: 80px; 
   background: var(--glass-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -92,16 +92,14 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 0 8vw;
-  z-index: 9999 !important; /* Extremely high to stay on top */
-  transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-              background 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000 !important; /* High, but under the overlay */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* COMPACT STATE ON SCROLL */
 header.scrolled {
   height: 64px;
-  background: var(--bg-card); /* Solid background for legibility on scroll */
+  background: var(--bg-card);
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15);
 }
 
@@ -266,20 +264,19 @@ input:checked+.slider:before {
   position: fixed;
   top: 0;
   right: -100%;
-  width: 80%;
+  width: 100%; /* Cover entire screen width */
   height: 100vh;
   background: var(--glass-bg);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  z-index: 1100;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  z-index: 10000; /* Higher than header */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
-  border-left: 1px solid var(--border-light);
 }
 
 .mobile-nav.open {
@@ -289,21 +286,28 @@ input:checked+.slider:before {
 .mobile-nav a {
   text-decoration: none;
   color: var(--text-primary);
-  font-size: 1.5rem;
+  font-size: 2rem; /* Larger for better mobile readability */
   font-family: 'ClashGrotesk-Semibold', sans-serif;
   letter-spacing: 0.05em;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.mobile-nav a:hover {
+  transform: scale(1.1);
+  color: var(--accent-primary);
+}
+
+/* X BUTTON TOP RIGHT OF OVERLAY - ALIGNED WITH STRIPES */
 .nav-close-btn {
   position: absolute;
-  top: 25px;
-  right: 40px;
+  top: 24px;   /* Exact vertical align with logo/stripes */
+  right: 5vw;  /* Exact horizontal align with stripes */
   font-size: 2rem;
   color: var(--text-primary);
   cursor: pointer;
   line-height: 1;
   padding: 10px;
-  z-index: 1200;
+  z-index: 10001;
 }
 
 /* Layout Components */
