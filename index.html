@@ -174,36 +174,45 @@
 
     .face-bubble {
       position: absolute;
-      top: -60px;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
+      left: 110%; /* Move to the right */
+      top: 50%;
+      transform: translateY(-50%) translateX(20px);
       background: white;
-      padding: 1rem 1.5rem;
-      border-radius: 20px;
-      font-family: 'ClashGrotesk-Medium', sans-serif;
-      font-size: 0.9rem;
+      padding: 0.75rem 1.25rem;
+      
+      /* Pixelated styling */
+      border: 4px solid #000;
+      box-shadow: 6px 6px 0px 0px rgba(0,0,0,0.15);
+      border-radius: 0; /* Clear rounds for pixel look */
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.85rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      
       color: var(--text-primary);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
       white-space: nowrap;
       opacity: 0;
       pointer-events: none;
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 10;
     }
 
+    /* Pixelated Pointer pointing left */
     .face-bubble::after {
       content: "";
       position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-top: 10px solid white;
+      left: -14px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-right: 10px solid #000;
     }
 
     .face-animation-container:hover .face-bubble, .face-animation-container.active .face-bubble {
       opacity: 1;
-      transform: translateX(-50%) translateY(0);
+      transform: translateY(-50%) translateX(0);
     }
 
     .hero-title {
@@ -573,6 +582,25 @@
 
       .timeline {
         padding-left: 1.5rem;
+      }
+
+      /* Adjust face bubble for mobile */
+      .face-bubble {
+        left: 50%;
+        top: -60px;
+        transform: translateX(-50%) translateY(20px);
+      }
+      .face-bubble::after {
+        left: 50%;
+        top: 100%;
+        transform: translateX(-50%);
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid #000;
+        border-right: none;
+      }
+      .face-animation-container:hover .face-bubble, .face-animation-container.active .face-bubble {
+        transform: translateX(-50%) translateY(0);
       }
     }
   </style>
