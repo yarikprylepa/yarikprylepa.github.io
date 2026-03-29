@@ -33,13 +33,17 @@
       --border-light: rgba(57, 62, 70, 0.2);
       --glass-bg: rgba(255, 255, 255, 0.85);
       --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       --gradient-bg: linear-gradient(135deg, #FCFBF9 0%, #D7DCEA 25%, #A1B3D7 75%, #6581BF 100%);
       
       /* Toggle Colors */
       --toggle-bg: #E2E8F0;
       --toggle-knob: #FFFFFF;
       --toggle-accent: #FFD700;
+      
+      /* Target Theme Colors for Icons */
+      --dark-theme-color: #121212;
+      --light-theme-color: #FCFBF9;
     }
 
     [data-theme="dark"] {
@@ -51,7 +55,7 @@
       --text-muted: #9BA3AF;
       --accent-primary: #8AB4F8;
       --border-light: rgba(255, 255, 255, 0.1);
-      --glass-bg: rgba(18, 18, 18, 0.85);
+      --glass-bg: rgba(12, 12, 12, 0.85);
       --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
       --gradient-bg: linear-gradient(135deg, #0A0A0A 0%, #121212 25%, #1F2937 75%, #111827 100%);
       
@@ -66,6 +70,8 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      /* GLOBAL THEME TRANSITION - Smoother overall feeling */
+      transition: background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
     }
 
     html,
@@ -73,10 +79,10 @@
       scroll-behavior: smooth;
       font-family: 'ClashGrotesk-Regular', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--gradient-bg);
+      background-attachment: scroll; /* Ensuring gradient smoothness on scroll */
       color: var(--text-primary);
       overflow-x: hidden;
       line-height: 1.6;
-      transition: background 0.5s ease;
     }
 
     body {
@@ -99,7 +105,6 @@
       justify-content: space-between;
       padding: 0 8vw;
       z-index: 1000;
-      transition: var(--transition);
     }
 
     .logo {
@@ -127,7 +132,6 @@
       font-size: 0.9rem;
       position: relative;
       font-family: 'ClashGrotesk-Medium', sans-serif;
-      transition: var(--transition);
     }
 
     nav a::after {
@@ -155,8 +159,8 @@
     .theme-switch {
       position: relative;
       display: inline-block;
-      width: 64px;
-      height: 34px;
+      width: 60px; /* Slimmer for modern look */
+      height: 32px;
       cursor: pointer;
       user-select: none;
     }
@@ -180,7 +184,6 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 8px;
-      border: 1px solid var(--border-light);
     }
 
     .slider i {
@@ -189,42 +192,43 @@
       transition: 0.4s;
     }
 
+    /* Sun Icon (Left) colored with dark theme color */
     .slider .fa-sun {
-      color: #FFD700;
+      color: var(--dark-theme-color);
       opacity: 1;
     }
 
+    /* Crescent Moon Icon (Right) colored with light theme color */
     .slider .fa-moon {
-      color: #CBD5E1;
-      opacity: 0.5;
+      color: var(--light-theme-color);
+      opacity: 0.8;
     }
 
     .slider:before {
       position: absolute;
       content: "";
-      height: 26px;
-      width: 26px;
+      height: 24px;
+      width: 24px;
       left: 4px;
-      bottom: 3px;
+      bottom: 4px;
       background-color: var(--toggle-knob);
       transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       border-radius: 50%;
       z-index: 2;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
-    /* Transitions */
+    /* Transitions for the Switch Knob */
     input:checked + .slider:before {
-      transform: translateX(30px);
+      transform: translateX(28px);
     }
 
     input:checked + .slider .fa-sun {
-      opacity: 0.5;
+      opacity: 0.4;
     }
 
     input:checked + .slider .fa-moon {
       opacity: 1;
-      color: #F8FAFC;
     }
 
     /* Layout Components */
@@ -260,11 +264,6 @@
       object-fit: contain;
       margin-bottom: 1.25rem;
       display: block;
-      filter: var(--logo-filter, none);
-    }
-
-    [data-theme="dark"] .company-logo {
-      filter: brightness(1.1);
     }
 
     /* Hero / intro */
@@ -288,7 +287,6 @@
       height: auto;
       object-fit: contain;
       display: block;
-      transition: transform 0.3s ease;
     }
 
     .face-bubble {
@@ -310,7 +308,6 @@
       white-space: nowrap;
       opacity: 0;
       pointer-events: none;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       z-index: 10;
     }
 
@@ -371,7 +368,6 @@
       font-size: 0.85rem;
       color: var(--accent-primary);
       font-family: 'ClashGrotesk-Medium', sans-serif;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .tag:hover {
@@ -449,7 +445,6 @@
       border: 1px solid var(--border-light);
       border-radius: 24px;
       padding: 2.5rem;
-      transition: var(--transition);
       box-shadow: var(--card-shadow);
     }
 
@@ -505,7 +500,6 @@
       border: 1px solid var(--border-light);
       border-radius: 24px;
       padding: 2.5rem;
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
       overflow: hidden;
       display: flex;
@@ -518,7 +512,6 @@
       transform: translateY(-12px);
       border-color: var(--accent-primary);
       box-shadow: var(--card-shadow);
-      background: var(--bg-card);
     }
 
     .project-card h3 {
@@ -554,12 +547,12 @@
       border-radius: 12px;
       font-size: 0.85rem;
       font-family: 'ClashGrotesk-Medium', sans-serif;
-      transition: var(--transition);
     }
 
     .btn-primary {
       background: var(--accent-primary);
       color: white;
+      transition: none; /* Already covered by global * transition */
     }
 
     .btn-secondary {
@@ -571,7 +564,7 @@
     .reveal {
       opacity: 0;
       transform: translateY(40px);
-      transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: opacity 1.2s ease, transform 1.2s ease;
     }
 
     .reveal.active {
@@ -608,7 +601,6 @@
       flex-direction: column;
       align-items: center;
       gap: 0.75rem;
-      transition: var(--transition);
     }
 
     [data-theme="dark"] .skill-item {
@@ -652,7 +644,6 @@
       border: 1px solid var(--border-light);
       background: var(--bg-card);
       text-decoration: none;
-      transition: var(--transition);
       flex-shrink: 0;
     }
 
@@ -668,11 +659,6 @@
       height: 24px;
       display: block;
       object-fit: contain;
-      transition: all 0.3s ease;
-    }
-
-    .contact-links a:hover img {
-      transform: scale(1.1);
     }
 
     /* Footer */
@@ -682,7 +668,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(127, 127, 127, 0.05);
     }
 
     .footer-text {
