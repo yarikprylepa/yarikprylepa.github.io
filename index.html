@@ -246,7 +246,6 @@
       transition: all 0.3s ease-in-out;
     }
 
-    /* OPEN STATE ANIMATION */
     .menu-btn.open span:nth-child(1) {
       transform: translateY(8px) rotate(45deg);
     }
@@ -264,18 +263,18 @@
       position: fixed;
       top: 0;
       right: -100%;
-      width: 80%; /* Takes up 80% width */
+      width: 80%;
       height: 100vh;
       background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      z-index: 1050;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      z-index: 1100; /* Higher than menu-btn when open */
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 2rem;
-      transition: all 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+      transition: all 0.5s cubic-bezier(0.7, 0, 0.3, 1);
       box-shadow: -10px 0 30px rgba(0,0,0,0.1);
       border-left: 1px solid var(--border-light);
     }
@@ -290,6 +289,19 @@
       font-size: 1.5rem;
       font-family: 'ClashGrotesk-Semibold', sans-serif;
       letter-spacing: 0.05em;
+    }
+
+    /* X BUTTON TOP RIGHT OF OVERLAY */
+    .nav-close-btn {
+      position: absolute;
+      top: 25px;
+      right: 40px;
+      font-size: 2rem;
+      color: var(--text-primary);
+      cursor: pointer;
+      line-height: 1;
+      padding: 10px;
+      z-index: 1200;
     }
 
     /* Layout Components */
@@ -386,6 +398,7 @@
       border-top: 10px solid transparent;
       border-bottom: 10px solid transparent;
       border-right: 10px solid #000;
+      border-right-color: inherit;
     }
 
     [data-theme="dark"] .face-bubble::after {
@@ -748,7 +761,7 @@
       .logo { font-size: 1rem; }
       nav { display: none; }
       
-      .menu-btn { display: flex; } /* Show hamburger on mobile */
+      .menu-btn { display: flex; }
 
       section { padding: 6rem 5vw 3rem; }
       h2 { font-size: 2.2rem; }
@@ -769,15 +782,9 @@
         border-top: 8px solid transparent !important;
         border-bottom: 8px solid transparent !important;
         border-right: 8px solid #000 !important;
-        border-right-color: inherit;
       }
       [data-theme="dark"] .face-bubble::after {
         border-right-color: #F0F2F5 !important;
-      }
-      .face-animation-container:hover .face-bubble, 
-      .face-animation-container.active .face-bubble {
-        opacity: 1 !important;
-        transform: translateY(-50%) translateX(0) !important;
       }
     }
   </style>
@@ -817,6 +824,7 @@
 
   <!-- Mobile Overlay -->
   <div class="mobile-nav" id="mobile-nav">
+    <div class="nav-close-btn" id="close-btn"><i class="fas fa-times"></i></div>
     <a href="#home">Home</a>
     <a href="#education">Education</a>
     <a href="#experience">Experience</a>
@@ -1025,22 +1033,26 @@
 
     // Mobile Menu Logic
     const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
     const mobileNav = document.getElementById('mobile-nav');
     const mobileLinks = document.querySelectorAll('.mobile-nav a');
 
+    function closeMobileMenu() {
+      menuBtn.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = 'auto';
+    }
+
     menuBtn.addEventListener('click', () => {
-      menuBtn.classList.toggle('open');
-      mobileNav.classList.toggle('open');
-      // Prevent scrolling when menu is open
-      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : 'auto';
+      menuBtn.classList.add('open');
+      mobileNav.classList.add('open');
+      document.body.style.overflow = 'hidden';
     });
 
+    closeBtn.addEventListener('click', closeMobileMenu);
+
     mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        menuBtn.classList.remove('open');
-        mobileNav.classList.remove('open');
-        document.body.style.overflow = 'auto';
-      });
+      link.addEventListener('click', closeMobileMenu);
     });
 
     // Reveal sections on scroll
@@ -1080,7 +1092,7 @@
       else stopTalking();
     });
 
-    // Stay and Active Links
+    // Header and Active Links
     const navbar = document.getElementById('navbar');
     const navLinks = document.querySelectorAll('nav a');
     window.addEventListener('scroll', () => {
@@ -1096,7 +1108,6 @@
     window.addEventListener('load', reveal);
     reveal();
 
-    // Standard Desktop Nav Click
     navLinks.forEach(link => {
       link.addEventListener('click', function (e) {
         e.preventDefault();
