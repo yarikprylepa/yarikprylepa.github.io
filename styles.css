@@ -165,45 +165,36 @@ nav a.active::after {
   width: 100%;
 }
 
-/* CARPET OVERLAY EFFECTS ON HOME & FOOTER */
-#home,
-footer {
-  position: relative;
-  overflow: hidden;
-  background-color: var(--bg-primary); /* #ffffff or #0d1117 */
+/* GLOBAL CARPET BACKGROUND */
+html {
+  background: var(--bg-primary);
 }
 
-#home::before,
-footer::before {
+body::before {
   content: "";
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-image: url('images/wallpaper.jpg');
   background-size: cover;
-  background-position: bottom right;
+  background-position: center;
   background-repeat: no-repeat;
-  mask-image: radial-gradient(ellipse 70% 80% at 100% 100%, black 20%, transparent 70%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 80% at 100% 100%, black 20%, transparent 70%);
-  z-index: 1;
+  z-index: -2;
   transition: opacity 0.4s ease-in-out;
   pointer-events: none;
 }
 
-#home::after,
-footer::after {
+body::after {
   content: "";
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: var(--carpet-overlay);
-  mask-image: radial-gradient(ellipse 70% 80% at 100% 100%, black 20%, transparent 70%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 80% at 100% 100%, black 20%, transparent 70%);
-  z-index: 2;
+  z-index: -1;
   transition: background 0.4s ease-in-out;
   pointer-events: none;
 }
