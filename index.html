@@ -9,18 +9,17 @@
   <link rel="stylesheet" href="fonts/clash-grotesk.css">
 
   <style>
-    /* COLOR VARIABLES - Sleek, Modern, and Professional */
+    /* COLOR VARIABLES - Restored to your original palette */
     :root {
-      --bg-primary: #0f172a; /* Deep Slate Blue */
-      --bg-card: rgba(30, 41, 59, 0.7); /* Translucent Slate */
-      --text-primary: #f8fafc; /* Near White */
-      --text-secondary: #cbd5e1; /* Soft Gray Blue */
-      --text-muted: #94a3b8; /* Muted Slate */
-      --accent-primary: #38bdf8; /* Bright Sky Blue */
-      --accent-secondary: #818cf8; /* Indigo Accent */
-      --border-light: rgba(255, 255, 255, 0.1);
-      --glass-bg: rgba(15, 23, 42, 0.8);
-      --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+      --bg-primary: #DFD0B8;
+      --bg-card: #FFFFFF;
+      --text-primary: #222831;
+      --text-secondary: #393E46;
+      --text-muted: #7C8898;
+      --accent-primary: #5A7ACD;
+      --border-light: rgba(57, 62, 70, 0.2); 
+      --glass-bg: rgba(255, 255, 255, 0.8);
+      --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     }
 
     /* Global */
@@ -33,33 +32,12 @@
     html, body {
       scroll-behavior: smooth;
       font-family: 'ClashGrotesk-Regular', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background-color: var(--bg-primary);
+      background: linear-gradient(135deg, #FCFBF9 0%, #D7DCEA 25%, #A1B3D7 75%, #6581BF 100%);
+      background-attachment: fixed;
       color: var(--text-primary);
       overflow-x: hidden;
     }
 
-    /* Dynamic Mesh Gradient Background */
-    .bg-mesh {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
-      background: radial-gradient(at 0% 0%, hsla(222, 47%, 11%, 1) 0, transparent 50%),
-                  radial-gradient(at 50% 0%, hsla(217, 91%, 60%, 0.15) 0, transparent 50%),
-                  radial-gradient(at 100% 0%, hsla(199, 89%, 48%, 0.1) 0, transparent 50%),
-                  radial-gradient(at 50% 100%, hsla(217, 91%, 60%, 0.1) 0, transparent 50%),
-                  radial-gradient(at 0% 100%, hsla(222, 47%, 11%, 1) 0, transparent 50%);
-      filter: blur(80px);
-      opacity: 0.8;
-      animation: meshShift 20s infinite alternate ease-in-out;
-    }
-
-    @keyframes meshShift {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.1); }
-    }
 
     body {
       line-height: 1.6;
@@ -154,10 +132,7 @@
       font-size: clamp(2.5rem, 6vw, 4rem);
       line-height: 1.1;
       margin-bottom: 1.5rem;
-      background: linear-gradient(to right, #f8fafc, #38bdf8);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--text-primary);
       letter-spacing: -0.02em;
     }
 
@@ -217,7 +192,7 @@
       transform: translateY(-12px);
       border-color: var(--accent-primary);
       box-shadow: var(--card-shadow);
-      background: rgba(30, 41, 59, 0.9);
+      background: var(--bg-card);
     }
 
     .project-card h3 {
@@ -286,12 +261,10 @@
       height: 24px;
       display: block;
       object-fit: contain;
-      filter: invert(1);
       transition: all 0.3s ease;
     }
 
     .contact-links a:hover img {
-      filter: invert(0);
       transform: scale(1.1);
     }
 
@@ -317,7 +290,6 @@
   </style>
 </head>
 <body>
-  <div class="bg-mesh"></div>
 
   <header>
     <div class="logo">Yarik Prylepa</div>
