@@ -70,14 +70,25 @@ html, body, section, div, h1, h2, h3, p, a, span, li, i, label, input, img, stro
 html, body {
   scroll-behavior: smooth;
   font-family: 'ClashGrotesk-Regular', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: var(--gradient-bg);
-  background-attachment: scroll;
+  background: transparent; /* TRANSPARENT TO SHOW BACKGROUND LAYERS */
   color: var(--text-primary);
   overflow-x: hidden;
   line-height: 1.6;
 }
 
-/* SCROLL-DRIVEN CARPET REVEAL LAYER */
+/* FIXED BASE LAYER - ABSOLUTE BOTTOM */
+#base-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -2;
+  background: var(--gradient-bg);
+  transition: background 0.5s ease;
+}
+
+/* SCROLL-DRIVEN CARPET REVEAL LAYER - MIDDLE */
 #carpet-bg {
   position: fixed !important;
   top: 0;
