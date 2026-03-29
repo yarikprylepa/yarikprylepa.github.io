@@ -39,9 +39,9 @@
       --toggle-bg: #E2E8F0;
       --toggle-knob: #FFFFFF;
       
-      /* Swapped Reference Colors for Toggle Icons */
-      --light-icon-color: #FCFBF9;
-      --dark-icon-color: #121212;
+      /* Vibrant Icon Colors */
+      --sun-icon-color: #FFB800; /* Vibrant Gold Sun */
+      --moon-icon-color: #121212; /* Dark Mode Silhouette */
     }
 
     [data-theme="dark"] {
@@ -60,6 +60,10 @@
       /* Toggle Dark State */
       --toggle-bg: #334155;
       --toggle-knob: #1E293B;
+      
+      /* Inverted Icon Colors for Dark Mode */
+      --sun-icon-color: #E2E8F0; /* Soft Silver Sun */
+      --moon-icon-color: #F8FAFC; /* Glowing White Moon */
     }
 
     /* Global styles */
@@ -67,7 +71,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      /* GLOBAL THEME TRANSITION - Silky smooth feeling */
+      /* GLOBAL THEME TRANSITION */
       transition: background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
     }
 
@@ -184,22 +188,20 @@
     }
 
     .slider i {
-      font-size: 12px;
+      font-size: 14px; /* Slightly larger for visibility */
       z-index: 1;
       transition: 0.4s;
     }
 
-    /* THEME ICON SWAP LOGIC */
-    /* Light Theme color for Sun (Left) */
+    /* DYNAMIC ICON COLORS */
     .slider .fa-sun {
-      color: var(--light-icon-color);
+      color: var(--sun-icon-color);
       opacity: 1;
     }
 
-    /* Dark Theme color for Crescent Moon (Right) */
     .slider .fa-moon {
-      color: var(--dark-icon-color);
-      opacity: 0.6; /* Balanced visibility in Light Mode */
+      color: var(--moon-icon-color);
+      opacity: 0.85;
     }
 
     .slider:before {
@@ -213,7 +215,7 @@
       transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       border-radius: 50%;
       z-index: 2;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
     }
 
     /* Transitions for the Switch Knob */
@@ -222,12 +224,10 @@
     }
 
     [data-theme="dark"] .slider .fa-sun {
-      color: var(--dark-icon-color);
-      opacity: 0.5;
+      opacity: 0.45;
     }
 
     [data-theme="dark"] .slider .fa-moon {
-      color: var(--light-icon-color);
       opacity: 1;
     }
 
