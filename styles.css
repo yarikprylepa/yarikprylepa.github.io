@@ -170,6 +170,7 @@ nav a.active::after {
 footer {
   position: relative;
   overflow: hidden;
+  background-color: var(--bg-primary); /* #ffffff or #0d1117 */
 }
 
 #home::before,
@@ -180,14 +181,15 @@ footer::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('wallpaper.jpg');
+  background-image: url('images/wallpaper.jpg');
   background-size: cover;
   background-position: bottom right;
   background-repeat: no-repeat;
   mask-image: radial-gradient(ellipse 70% 80% at 100% 100%, black 20%, transparent 70%);
   -webkit-mask-image: radial-gradient(ellipse 70% 80% at 100% 100%, black 20%, transparent 70%);
-  z-index: -2;
+  z-index: 1;
   transition: opacity 0.4s ease-in-out;
+  pointer-events: none;
 }
 
 #home::after,
@@ -201,8 +203,9 @@ footer::after {
   background: var(--carpet-overlay);
   mask-image: radial-gradient(ellipse 70% 80% at 100% 100%, black 20%, transparent 70%);
   -webkit-mask-image: radial-gradient(ellipse 70% 80% at 100% 100%, black 20%, transparent 70%);
-  z-index: -1;
+  z-index: 2;
   transition: background 0.4s ease-in-out;
+  pointer-events: none;
 }
 
 #home * {
