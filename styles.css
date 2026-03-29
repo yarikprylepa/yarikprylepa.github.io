@@ -83,7 +83,7 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  height: 80px; 
+  height: 72px; 
   background: var(--glass-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -92,7 +92,7 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 0 8vw;
-  z-index: 11000 !important; /* Above everything including overlay */
+  z-index: 11000 !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -107,7 +107,7 @@ header.menu-open {
 
 /* COMPACT STATE ON SCROLL */
 header.scrolled {
-  height: 64px;
+  height: 56px; 
   background: var(--bg-card);
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15);
 }
@@ -123,6 +123,8 @@ header.scrolled {
   letter-spacing: 0.03em;
   color: var(--text-primary);
   font-size: 1.2rem;
+  display: flex;
+  align-items: center;
 }
 
 .nav-items {
