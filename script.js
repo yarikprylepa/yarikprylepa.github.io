@@ -36,8 +36,8 @@ mobileLinks.forEach(link => {
 
 // INTERSECTION OBSERVER FOR PERFORMANCE-FIRST FADE-INS
 const revealOptions = {
-  threshold: 0.1, // Trigger earlier (10% in view)
-  rootMargin: "0px" 
+  threshold: 0.1,
+  rootMargin: "0px"
 };
 
 const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -52,8 +52,8 @@ const revealObserver = new IntersectionObserver((entries, observer) => {
 // SCROLL-SPY: HIGHLIGHT ACTIVE NAV LINKS
 const navItems = document.querySelectorAll('nav a, .mobile-nav a');
 const spyOptions = {
-  threshold: 0.4, 
-  rootMargin: "-20% 0px -20% 0px" 
+  threshold: 0.4,
+  rootMargin: "-20% 0px -20% 0px"
 };
 
 const spyObserver = new IntersectionObserver((entries) => {
@@ -74,18 +74,15 @@ const spyObserver = new IntersectionObserver((entries) => {
 const revealElements = document.querySelectorAll('.reveal');
 revealElements.forEach(el => revealObserver.observe(el));
 
-// Observe all sections for Scroll-Spy
 document.querySelectorAll('section').forEach(section => {
   spyObserver.observe(section);
 });
 
 // STAGGERED REVEALS FOR INDEXES AND SPREADS
-// Looking for containers of multiple items to apply dynamic delays
 const staggerContainers = document.querySelectorAll('.index-list, .project-spreads, .skill-list');
 staggerContainers.forEach(container => {
   const children = container.children;
   Array.from(children).forEach((child, index) => {
-    // If child doesn't have reveal, add it
     if (!child.classList.contains('reveal')) {
       child.classList.add('reveal');
       revealObserver.observe(child);
@@ -94,12 +91,20 @@ staggerContainers.forEach(container => {
   });
 });
 
-// FACE PEEK ON LOAD
+// FACE PEEK ON LOAD — waits for image to load before animating
 const facePeek = document.getElementById('face-peek');
 if (facePeek) {
-  setTimeout(() => {
-    facePeek.classList.add('visible');
-  }, 800);
+  const triggerPeek = () => {
+    setTimeout(() => facePeek.classList.add('visible'), 300);
+  };
+
+  if (facePeek.complete && facePeek.naturalWidth > 0) {
+    // Image already cached / loaded
+    triggerPeek();
+  } else {
+    facePeek.addEventListener('load', triggerPeek);
+    facePeek.addEventListener('error', triggerPeek); // show even if broken
+  }
 }
 
 // STICKY HEADER & NAV STATE
@@ -117,13 +122,13 @@ navLinks.forEach(link => {
   link.addEventListener('click', function (e) {
     const href = this.getAttribute('href');
     if (!href || !href.startsWith('#')) return;
-    
+
     e.preventDefault();
     const targetElement = document.querySelector(href);
     if (targetElement) {
-      window.scrollTo({ 
-        top: href === '#home' ? 0 : targetElement.offsetTop - 80, 
-        behavior: 'smooth' 
+      window.scrollTo({
+        top: href === '#home' ? 0 : targetElement.offsetTop - 80,
+        behavior: 'smooth'
       });
     }
   });
