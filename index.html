@@ -13,8 +13,6 @@
 
   <!-- Preload Critical Assets — PERFORMANCE GAIN -->
   <link rel="preload" as="image" href="images/face1.png">
-  <link rel="preload" as="image" href="images/face2.png">
-  <link rel="preload" as="image" href="images/face3.png">
   <link rel="preload" href="fonts/ClashGrotesk-Semibold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/ClashGrotesk-Medium.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/ClashGrotesk-Regular.woff2" as="font" type="font/woff2" crossorigin>
@@ -71,12 +69,12 @@
     <!-- Hero Section: Editorial Boldness -->
     <section id="home" class="reveal active">
       <div class="hero-editorial-wrap">
-        <h1 class="hero-title">STUDENT AND PART‑TIME ROAD CYCLIST.</h1>
+        <h1 class="hero-title">STUDENT AND PART&#8209;TIME ROAD CYCLIST.</h1>
       </div>
       
       <div class="hero-footer">
         <p class="hero-subtitle">
-          Second‑year Mathematics and Statistics with Data Science student @ University of Reading
+          Second&#8209;year Mathematics and Statistics with Data Science student @ University of Reading
         </p>
         
         <div class="hero-meta">
@@ -88,7 +86,7 @@
             <span class="tag">Data visualization</span>
           </div>
           <p>
-            I enjoy building fun and useful projects –
+            I enjoy building fun and useful projects &ndash;
             from exploratory statistics and predictive models to personal hobby apps and websites
           </p>
         </div>
@@ -105,7 +103,7 @@
       <div class="index-list">
         <!-- University of Reading -->
         <div class="index-row reveal">
-          <div class="date">2024 — 2028</div>
+          <div class="date">2024 &mdash; 2028</div>
           <div class="title-wrap">
             <img src="images/reading.png" alt="University of Reading" class="company-logo" loading="lazy">
             <h3>University of Reading</h3>
@@ -116,7 +114,7 @@
             <ul>
               <li>Relevant Modules: Linear Models and Data Analysis, Probability and Statistics, Linear Algebra, Calculus</li>
               <li>Selected for University of Melbourne Year Abroad (among 4/180 students)</li>
-              <li>Active Course Representative & Participant in societies</li>
+              <li>Active Course Representative &amp; Participant in societies</li>
               <li>Learning French (equivalent of A2/B1 level)</li>
             </ul>
           </div>
@@ -124,7 +122,7 @@
 
         <!-- The Buckingham School -->
         <div class="index-row reveal">
-          <div class="date">2022 — 2024</div>
+          <div class="date">2022 &mdash; 2024</div>
           <div class="title-wrap">
             <h3>The Buckingham School</h3>
           </div>
@@ -149,7 +147,7 @@
       <div class="index-list">
         <!-- Recognise Bank -->
         <div class="index-row reveal">
-          <div class="date">April 2026 — June 2026</div>
+          <div class="date">April 2026 &mdash; June 2026</div>
           <div class="title-wrap">
             <img src="images/recognisebank.jpeg" alt="Recognise Bank" class="company-logo" loading="lazy">
             <h3>Recognise Bank</h3>
@@ -166,7 +164,7 @@
 
         <!-- Abbott -->
         <div class="index-row reveal">
-          <div class="date">Jul 2026 — Sep 2027</div>
+          <div class="date">Jul 2026 &mdash; Sep 2027</div>
           <div class="title-wrap">
             <img src="images/abbott.png" alt="Abbott" class="company-logo" loading="lazy">
             <h3>Abbott</h3>
@@ -183,7 +181,7 @@
 
         <!-- Commis Chef -->
         <div class="index-row reveal">
-          <div class="date">Sep 2025 — Present</div>
+          <div class="date">Sep 2025 &mdash; Present</div>
           <div class="title-wrap">
             <img src="images/reading.png" alt="University of Reading" class="company-logo" loading="lazy">
             <h3>University of Reading</h3>
@@ -192,7 +190,7 @@
           <div class="content-wrap">
             <ul>
               <li>Managing high-pressure meal preparation for 200+ students daily</li>
-              <li>Optimizing culinary workflows and ensuring 100% health & safety compliance</li>
+              <li>Optimizing culinary workflows and ensuring 100% health &amp; safety compliance</li>
             </ul>
           </div>
         </div>
@@ -221,7 +219,7 @@
             </p>
             <div class="project-links">
               <a href="#" class="btn">View Case Study</a>
-              <a href="https://github.com/yarikprylepa" class="btn">GitHub Repository</a>
+              <a href="https://github.com/yarikprylepa" class="btn" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
             </div>
           </div>
           <div class="project-visual">
@@ -256,7 +254,7 @@
     <section id="skills">
       <div class="section-header">
         <h2>SKILLS</h2>
-        <span class="section-number">04 / Tools & Literacy</span>
+        <span class="section-number">04 / Tools &amp; Literacy</span>
       </div>
 
       <div class="skills-index">
@@ -314,17 +312,15 @@
 <footer class="reveal">
   <div class="footer-top">
     <div class="footer-text">The rest of description is trivial and left as an exercise to the reader.</div>
-    <a href="#home" class="footer-back-top">BACK TO TOP ↑</a>
+    <a href="#home" class="footer-back-top">BACK TO TOP &uarr;</a>
   </div>
 </footer>
 
+  <!-- Face peek — MUST be before script.js so JS can find it in the DOM -->
+  <img id="face-peek" src="images/face1.png" alt="Yarik" />
+
   <script src="script.js"></script>
 
-  <img
-    id="face-peek"
-    src="images/face1.png"
-    alt="Yarik"
-  />
 </body>
 
 </html>
