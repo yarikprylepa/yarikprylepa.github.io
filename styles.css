@@ -29,12 +29,12 @@
 
 /* THEME VARIABLES - Editorial Palette */
 :root {
-  --bg-primary: #FCFBF9; /* Paper White */
+  --bg-primary: #FCFBF9;
   --bg-card: #FFFFFF;
-  --text-primary: #1A1A1A; /* Inky Black */
+  --text-primary: #1A1A1A;
   --text-secondary: #4A4A4A;
   --text-muted: #888888;
-  --accent-primary: #5A7ACD; /* Academic Blue */
+  --accent-primary: #5A7ACD;
   --border-editorial: 1px solid #1A1A1A;
   --border-light: 1px solid rgba(26, 26, 26, 0.1);
   --section-padding: 10rem 8vw;
@@ -59,13 +59,13 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  cursor: crosshair; /* Editorial/Design fee */
+  cursor: crosshair;
 }
 
 html {
   scroll-behavior: smooth;
   font-size: 16px;
-  overflow-x: clip; /* Prevent horizontal scroll without breaking fixed position children */
+  overflow-x: clip;
 }
 
 body {
@@ -76,7 +76,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* TYPOGRAPHIC SCALE - CHAMP Inspired */
+/* TYPOGRAPHIC SCALE */
 h1, h2, h3 {
   font-family: 'ClashGrotesk-Bold', sans-serif;
   text-transform: uppercase;
@@ -91,7 +91,7 @@ h3 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
 /* Layout Structure */
 main {
   width: 100%;
-  overflow: visible; /* Prevent clipping of peeking elements */
+  overflow: visible;
 }
 
 header {
@@ -148,7 +148,7 @@ nav a.active {
   color: var(--accent-primary);
 }
 
-/* Theme Switch - Editorial Reinterpretation */
+/* Theme Switch */
 .theme-switch-wrapper {
   display: flex;
   align-items: center;
@@ -185,7 +185,7 @@ input:checked + .slider:before {
   transform: translateX(20px);
 }
 
-.slider i { display: none; } /* Remove generic icons for editorial feel */
+.slider i { display: none; }
 
 /* Mobile Navigation Overlay */
 .mobile-nav {
@@ -239,7 +239,7 @@ input:checked + .slider:before {
 .menu-btn.open span:nth-child(2) { opacity: 0; }
 .menu-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* SECTIONS - Rule-based Grid System */
+/* SECTIONS */
 section {
   padding: var(--section-padding);
   border-bottom: var(--border-light);
@@ -263,17 +263,17 @@ section {
 
 #home {
   min-height: 100vh;
-  padding: 140px 4vw 60px; /* Increased top padding to protect header zone */
+  padding: 140px 4vw 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
-  overflow: visible; /* Ensure face can peek and bubble can show */
+  overflow: visible;
 }
 
 .hero-editorial-wrap {
   position: relative;
-  z-index: 5; /* Sit above the peeking face */
+  z-index: 5;
   margin-bottom: 2rem;
 }
 
@@ -281,7 +281,6 @@ section {
   max-width: 100%;
   word-break: break-word;
   line-height: 0.85;
-  /* Further refined size for better vertical fit */
   font-size: clamp(2.5rem, 10vw, 8rem);
   margin-bottom: 1rem;
 }
@@ -323,11 +322,11 @@ section {
   letter-spacing: 0.05em;
 }
 
-/* Redefined Peeking Face - Editorial Subtle Reveal */
+/* Peeking Face — moved left, pops up more */
 #face-peek {
   position: fixed;
   bottom: 0;
-  right: 40px;
+  right: 80px;           /* shifted left from 40px */
   width: clamp(100px, 14vw, 220px);
   z-index: 9999;
   transform: translateY(100%);
@@ -338,13 +337,13 @@ section {
 }
 
 #face-peek.visible {
-  transform: translateY(30%);
+  transform: translateY(10%);  /* was 30% — now shows ~90% of the image */
   opacity: 1;
 }
 
-/* Site Footer - Standalone Editorial Block */
+/* Footer */
 footer {
-  padding: 8rem 4vw 4vw; /* Generous spacing to "consider" it properly */
+  padding: 8rem 4vw 4vw;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -380,7 +379,7 @@ footer {
   color: var(--accent-primary);
 }
 
-/* Education & Experience - Row Based Editorial Index */
+/* Education & Experience */
 .index-list {
   display: flex;
   flex-direction: column;
@@ -449,7 +448,7 @@ footer {
   mix-blend-mode: screen;
 }
 
-/* Projects - Magazine Spread System */
+/* Projects */
 .project-spreads {
   display: flex;
   flex-direction: column;
@@ -482,7 +481,7 @@ footer {
 .project-visual {
   border: var(--border-editorial);
   aspect-ratio: 4 / 5;
-  background: rgba(0,0,0,0.05); /* Placeholder for spread feel */
+  background: rgba(0,0,0,0.05);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -506,7 +505,7 @@ footer {
   color: var(--bg-primary);
 }
 
-/* Skills - Typographic Index */
+/* Skills */
 .skills-index {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -544,7 +543,7 @@ footer {
   font-size: 1.1rem;
 }
 
-/* Contact Section */
+/* Contact */
 #contact {
   min-height: 80vh;
   justify-content: space-between;
@@ -583,7 +582,6 @@ footer {
   color: var(--accent-primary);
 }
 
-/* Footer (Closing Editorial Block) */
 footer {
   padding: 4vw;
   display: flex;
@@ -599,7 +597,7 @@ footer {
   max-width: 300px;
 }
 
-/* PERFORMANCE - Reveal Transitions */
+/* Reveal Transitions */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
@@ -611,7 +609,7 @@ footer {
   transform: translateY(0);
 }
 
-/* Responsive adjustments */
+/* Responsive */
 @media (max-width: 1024px) {
   .index-row { grid-template-columns: 1fr 3fr; }
   .index-row .date, .index-row .company-logo { order: 1; }
