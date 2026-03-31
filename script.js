@@ -1,11 +1,10 @@
-// Theme Switch Orchestration
+// Theme Switch
 const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
 const htmlElement = document.documentElement;
 const savedTheme = localStorage.getItem('theme');
 const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 const currentTheme = savedTheme || systemTheme;
 
-// INITIAL THEME LOAD
 htmlElement.setAttribute('data-theme', currentTheme);
 if (currentTheme === 'dark') toggleSwitch.checked = true;
 
@@ -15,7 +14,7 @@ toggleSwitch.addEventListener('change', (e) => {
   localStorage.setItem('theme', theme);
 }, false);
 
-// MOBILE MENU LOGIC
+// Mobile Menu
 const menuBtn = document.getElementById('menu-btn');
 const mobileNav = document.getElementById('mobile-nav');
 const mobileLinks = document.querySelectorAll('.mobile-nav a');
@@ -29,16 +28,10 @@ function toggleMobileMenu() {
 }
 
 menuBtn.addEventListener('click', toggleMobileMenu);
+mobileLinks.forEach(link => link.addEventListener('click', toggleMobileMenu));
 
-mobileLinks.forEach(link => {
-  link.addEventListener('click', toggleMobileMenu);
-});
-
-// INTERSECTION OBSERVER FOR PERFORMANCE-FIRST FADE-INS
-const revealOptions = {
-  threshold: 0.1,
-  rootMargin: "0px"
-};
+// Intersection Observer — Reveal
+const revealOptions = { threshold: 0.1, rootMargin: "0px" };
 
 const revealObserver = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
@@ -49,12 +42,9 @@ const revealObserver = new IntersectionObserver((entries, observer) => {
   });
 }, revealOptions);
 
-// SCROLL-SPY: HIGHLIGHT ACTIVE NAV LINKS
+// Scroll-spy
 const navItems = document.querySelectorAll('nav a, .mobile-nav a');
-const spyOptions = {
-  threshold: 0.4,
-  rootMargin: "-20% 0px -20% 0px"
-};
+const spyOptions = { threshold: 0.4, rootMargin: "-20% 0px -20% 0px" };
 
 const spyObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -62,27 +52,20 @@ const spyObserver = new IntersectionObserver((entries) => {
       const id = entry.target.getAttribute('id');
       navItems.forEach(item => {
         item.classList.remove('active');
-        if (item.getAttribute('href') === `#${id}`) {
-          item.classList.add('active');
-        }
+        if (item.getAttribute('href') === `#${id}`) item.classList.add('active');
       });
     }
   });
 }, spyOptions);
 
-// TARGET REVEAL AND SPY ELEMENTS
 const revealElements = document.querySelectorAll('.reveal');
 revealElements.forEach(el => revealObserver.observe(el));
+document.querySelectorAll('section').forEach(section => spyObserver.observe(section));
 
-document.querySelectorAll('section').forEach(section => {
-  spyObserver.observe(section);
-});
-
-// STAGGERED REVEALS FOR INDEXES AND SPREADS
+// Staggered reveals
 const staggerContainers = document.querySelectorAll('.index-list, .project-spreads, .skill-list');
 staggerContainers.forEach(container => {
-  const children = container.children;
-  Array.from(children).forEach((child, index) => {
+  Array.from(container.children).forEach((child, index) => {
     if (!child.classList.contains('reveal')) {
       child.classList.add('reveal');
       revealObserver.observe(child);
@@ -91,38 +74,17 @@ staggerContainers.forEach(container => {
   });
 });
 
-// FACE PEEK ON LOAD — waits for image to load before animating
-const facePeek = document.getElementById('face-peek');
-if (facePeek) {
-  const triggerPeek = () => {
-    setTimeout(() => facePeek.classList.add('visible'), 300);
-  };
-
-  if (facePeek.complete && facePeek.naturalWidth > 0) {
-    // Image already cached / loaded
-    triggerPeek();
-  } else {
-    facePeek.addEventListener('load', triggerPeek);
-    facePeek.addEventListener('error', triggerPeek); // show even if broken
-  }
-}
-
-// STICKY HEADER & NAV STATE
+// Sticky Header
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 40) {
-    header.classList.add('scrolled');
-  } else {
-    header.classList.remove('scrolled');
-  }
+  header.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
 
-// Smooth Desktop Scrolling
+// Smooth Scrolling
 const navLinks = document.querySelectorAll('nav a, header .logo, footer a');
 navLinks.forEach(link => {
   link.addEventListener('click', function (e) {
     const href = this.getAttribute('href');
     if (!href || !href.startsWith('#')) return;
-
     e.preventDefault();
     const targetElement = document.querySelector(href);
     if (targetElement) {

@@ -11,13 +11,12 @@
   <meta name="keywords"
     content="Data Science, Mathematics, Statistics, Python, R, SAS, Machine Learning, UI/UX, Cycling, University of Reading">
 
-  <!-- Preload Critical Assets — PERFORMANCE GAIN -->
+  <!-- Preload Critical Assets -->
   <link rel="preload" as="image" href="images/face1.png">
   <link rel="preload" href="fonts/ClashGrotesk-Semibold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/ClashGrotesk-Medium.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/ClashGrotesk-Regular.woff2" as="font" type="font/woff2" crossorigin>
 
-  <!-- External Styles & Icons -->
   <link rel="stylesheet" href="fonts/clash-grotesk.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
@@ -36,7 +35,6 @@
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
-      <!-- Pill-Shaped Theme Switch -->
       <div class="theme-switch-wrapper">
         <label class="theme-switch" for="checkbox" aria-label="Toggle dark mode">
           <input type="checkbox" id="checkbox" />
@@ -46,7 +44,6 @@
           </div>
         </label>
       </div>
-      <!-- Smartphone Hamburger -->
       <div class="menu-btn" id="menu-btn" aria-label="Toggle mobile menu" role="button">
         <span></span>
         <span></span>
@@ -55,7 +52,6 @@
     </div>
   </header>
 
-  <!-- Mobile Overlay -->
   <div class="mobile-nav" id="mobile-nav">
     <a href="#home">Home</a>
     <a href="#education">Education</a>
@@ -66,7 +62,7 @@
   </div>
 
   <main>
-    <!-- Hero Section: Editorial Boldness -->
+    <!-- Hero Section -->
     <section id="home" class="reveal active">
       <div class="hero-editorial-wrap">
         <h1 class="hero-title">STUDENT AND PART&#8209;TIME ROAD CYCLIST.</h1>
@@ -91,9 +87,12 @@
           </p>
         </div>
       </div>
+
+      <!-- Face pinned to the bottom border of this section -->
+      <img id="face-peek" src="images/face1.png" alt="Yarik" />
     </section>
 
-    <!-- Education Section: Index Style -->
+    <!-- Education Section -->
     <section id="education">
       <div class="section-header">
         <h2>EDUCATION</h2>
@@ -101,7 +100,6 @@
       </div>
       
       <div class="index-list">
-        <!-- University of Reading -->
         <div class="index-row reveal">
           <div class="date">2024 &mdash; 2028</div>
           <div class="title-wrap">
@@ -120,7 +118,6 @@
           </div>
         </div>
 
-        <!-- The Buckingham School -->
         <div class="index-row reveal">
           <div class="date">2022 &mdash; 2024</div>
           <div class="title-wrap">
@@ -137,7 +134,7 @@
       </div>
     </section>
 
-    <!-- Experience Section: Row Logic -->
+    <!-- Experience Section -->
     <section id="experience">
       <div class="section-header">
         <h2>EXPERIENCE</h2>
@@ -145,7 +142,6 @@
       </div>
 
       <div class="index-list">
-        <!-- Recognise Bank -->
         <div class="index-row reveal">
           <div class="date">April 2026 &mdash; June 2026</div>
           <div class="title-wrap">
@@ -162,7 +158,6 @@
           </div>
         </div>
 
-        <!-- Abbott -->
         <div class="index-row reveal">
           <div class="date">Jul 2026 &mdash; Sep 2027</div>
           <div class="title-wrap">
@@ -179,7 +174,6 @@
           </div>
         </div>
 
-        <!-- Commis Chef -->
         <div class="index-row reveal">
           <div class="date">Sep 2025 &mdash; Present</div>
           <div class="title-wrap">
@@ -197,7 +191,7 @@
       </div>
     </section>
 
-    <!-- Projects Section: Magazine Spread -->
+    <!-- Projects Section -->
     <section id="projects">
       <div class="section-header">
         <h2>PROJECTS</h2>
@@ -205,7 +199,6 @@
       </div>
 
       <div class="project-spreads">
-        <!-- Project 01: Cycly -->
         <div class="project-item reveal">
           <div class="project-info">
             <h3>Cycly App</h3>
@@ -227,7 +220,6 @@
           </div>
         </div>
 
-        <!-- Project 02: 100Routine -->
         <div class="project-item reveal">
           <div class="project-info">
             <h3>100Routine Analysis</h3>
@@ -250,7 +242,7 @@
       </div>
     </section>
 
-    <!-- Skills Section: Index Grid -->
+    <!-- Skills Section -->
     <section id="skills">
       <div class="section-header">
         <h2>SKILLS</h2>
@@ -286,7 +278,7 @@
       </div>
     </section>
 
-    <!-- Contact Section: Closing Block -->
+    <!-- Contact Section -->
     <section id="contact">
       <div class="section-header">
         <h2>CONTACT</h2>
@@ -315,9 +307,6 @@
     <a href="#home" class="footer-back-top">BACK TO TOP &uarr;</a>
   </div>
 </footer>
-
-  <!-- Face peek — MUST be before script.js so JS can find it in the DOM -->
-  <img id="face-peek" src="images/face1.png" alt="Yarik" />
 
   <script src="script.js"></script>
 
