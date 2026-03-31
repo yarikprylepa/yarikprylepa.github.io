@@ -97,7 +97,6 @@ staggerContainers.forEach(container => {
 // FACE PEEK ON LOAD
 const facePeek = document.getElementById('face-peek');
 if (facePeek) {
-  facePeek.style.display = 'block';
   setTimeout(() => {
     facePeek.classList.add('visible');
   }, 800);
