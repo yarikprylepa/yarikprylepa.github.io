@@ -325,26 +325,24 @@ section {
 
 /* Redefined Peeking Face - Editorial Subtle Reveal */
 .face-animation-container {
-  position: absolute;
-  right: 4vw;
+  position: fixed;
+  right: 0;
   bottom: 0;
-  width: clamp(140px, 20vw, 350px);
-  z-index: 100; /* Ensure it stays above content */
+  width: clamp(120px, 16vw, 280px);
+  z-index: 50;
+  transform: translateY(55%);
   opacity: 0.5;
   filter: grayscale(1);
-  transform: translateY(45%); /* Partially visible head to signal peek */
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
               filter 0.6s ease;
   cursor: pointer;
-  pointer-events: auto;
 }
 
-#home:hover .face-animation-container,
 .face-animation-container:hover {
-  filter: grayscale(0);
+  transform: translateY(0);
   opacity: 1;
-  transform: translateY(0); /* Reveal fully on section hover */
+  filter: grayscale(0);
 }
 
 .face-bubble {
@@ -666,19 +664,4 @@ footer {
   .contact-wrap { grid-template-columns: 1fr; }
   .contact-links { align-items: flex-start; }
   .contact-link { font-size: 15vw; }
-
-  /* Mobile Peeking Face Calibration */
-  .face-animation-container {
-    right: 2vw;
-    width: 130px;
-    transform: translateY(40%); /* Slightly less deep peek for mobile screens */
-    opacity: 0.6; /* Higher visibility at rest for smaller screens */
-  }
-
-  .face-bubble {
-    left: 20% !important;
-    font-size: 0.6rem !important;
-    padding: 0.3rem !important;
-    bottom: 85% !important;
-  }
 }
