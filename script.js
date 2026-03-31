@@ -19,6 +19,7 @@ toggleSwitch.addEventListener('change', (e) => {
 const menuBtn = document.getElementById('menu-btn');
 const mobileNav = document.getElementById('mobile-nav');
 const mobileLinks = document.querySelectorAll('.mobile-nav a');
+const header = document.querySelector('header');
 
 function toggleMobileMenu() {
   menuBtn.classList.toggle('open');
@@ -36,7 +37,7 @@ mobileLinks.forEach(link => {
 // INTERSECTION OBSERVER FOR PERFORMANCE-FIRST FADE-INS
 const revealOptions = {
   threshold: 0.1, // Trigger earlier (10% in view)
-  rootMargin: "0px" // No margin for maximum reliability
+  rootMargin: "0px" 
 };
 
 const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -51,8 +52,8 @@ const revealObserver = new IntersectionObserver((entries, observer) => {
 // SCROLL-SPY: HIGHLIGHT ACTIVE NAV LINKS
 const navItems = document.querySelectorAll('nav a, .mobile-nav a');
 const spyOptions = {
-  threshold: 0.5, // Highlight when section is 50% in view
-  rootMargin: "-70px 0px 0px 0px" // Account for fixed header height
+  threshold: 0.4, 
+  rootMargin: "-20% 0px -20% 0px" 
 };
 
 const spyObserver = new IntersectionObserver((entries) => {
@@ -78,19 +79,22 @@ document.querySelectorAll('section').forEach(section => {
   spyObserver.observe(section);
 });
 
-// STAGGERED REVEALS FOR CARDS, LISTS & TIMELINE
-const staggerContainers = document.querySelectorAll('.experience-grid, .project-grid, .skills-grid, .timeline');
+// STAGGERED REVEALS FOR INDEXES AND SPREADS
+// Looking for containers of multiple items to apply dynamic delays
+const staggerContainers = document.querySelectorAll('.index-list, .project-spreads, .skill-list');
 staggerContainers.forEach(container => {
   const children = container.children;
   Array.from(children).forEach((child, index) => {
-    // Add reveal class dynamically to children
-    child.classList.add('reveal');
-    child.style.transitionDelay = `${index * 100}ms`;
-    revealObserver.observe(child);
+    // If child doesn't have reveal, add it
+    if (!child.classList.contains('reveal')) {
+      child.classList.add('reveal');
+      revealObserver.observe(child);
+    }
+    child.style.transitionDelay = `${index * 80}ms`;
   });
 });
 
-// FACE ANIMATION LOGIC (OPTIMIZED)
+// FACE ANIMATION LOGIC
 const faceContainer = document.getElementById('face-interactive');
 const faceImg = document.getElementById('anim-face');
 const frames = ['images/face1.png', 'images/face2.png', 'images/face3.png'];
@@ -112,21 +116,19 @@ function stopTalking() {
   currentFrame = 0;
 }
 
-faceContainer.addEventListener('mouseenter', startTalking);
-faceContainer.addEventListener('mouseleave', stopTalking);
-faceContainer.addEventListener('touchstart', (e) => {
-  e.preventDefault();
-  faceContainer.classList.toggle('active');
-  if (faceContainer.classList.contains('active')) startTalking();
-  else stopTalking();
-});
+if (faceContainer) {
+  faceContainer.addEventListener('mouseenter', startTalking);
+  faceContainer.addEventListener('mouseleave', stopTalking);
+  faceContainer.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    faceContainer.classList.toggle('active');
+    if (faceContainer.classList.contains('active')) startTalking();
+    else stopTalking();
+  });
+}
 
 // STICKY HEADER & NAV STATE
-const header = document.querySelector('header');
-const navLinks = document.querySelectorAll('nav a');
-
 window.addEventListener('scroll', () => {
-  // Use class toggle for CSS performance
   if (window.scrollY > 40) {
     header.classList.add('scrolled');
   } else {
@@ -135,14 +137,17 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 // Smooth Desktop Scrolling
+const navLinks = document.querySelectorAll('nav a, header .logo, footer a');
 navLinks.forEach(link => {
   link.addEventListener('click', function (e) {
+    const href = this.getAttribute('href');
+    if (!href || !href.startsWith('#')) return;
+    
     e.preventDefault();
-    const targetID = this.getAttribute('href');
-    const targetElement = document.querySelector(targetID);
+    const targetElement = document.querySelector(href);
     if (targetElement) {
       window.scrollTo({ 
-        top: targetID === '#home' ? 0 : targetElement.offsetTop - 70, 
+        top: href === '#home' ? 0 : targetElement.offsetTop - 80, 
         behavior: 'smooth' 
       });
     }
