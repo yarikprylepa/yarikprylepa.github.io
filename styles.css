@@ -65,13 +65,13 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: clip; /* Prevent horizontal scroll without breaking fixed position children */
 }
 
 body {
   font-family: 'ClashGrotesk-Regular', system-ui, sans-serif;
   background: var(--bg-primary);
   color: var(--text-primary);
-  overflow-x: hidden;
   line-height: 1.4;
   -webkit-font-smoothing: antialiased;
 }
