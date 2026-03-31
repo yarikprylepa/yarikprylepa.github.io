@@ -251,7 +251,7 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: relative; /* required for absolute child */
+  position: relative;
   overflow: visible;
 }
 
@@ -265,7 +265,7 @@ section {
   max-width: 100%;
   word-break: break-word;
   line-height: 0.85;
-  font-size: clamp(2.5rem, 10vw, 8rem);
+  /* inherits h1 size: clamp(4rem, 15vw, 12rem) */
   margin-bottom: 1rem;
 }
 
@@ -309,7 +309,7 @@ section {
 /* Face pinned to the bottom border of #home */
 #face-peek {
   position: absolute;
-  bottom: 0;           /* sits exactly on the section's bottom border line */
+  bottom: 0;
   right: 80px;
   width: clamp(100px, 14vw, 220px);
   z-index: 10;
