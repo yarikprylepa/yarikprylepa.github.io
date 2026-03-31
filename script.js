@@ -94,37 +94,13 @@ staggerContainers.forEach(container => {
   });
 });
 
-// FACE ANIMATION LOGIC
-const faceContainer = document.getElementById('face-interactive');
-const faceImg = document.getElementById('anim-face');
-const frames = ['images/face1.png', 'images/face2.png', 'images/face3.png'];
-let animInterval = null;
-let currentFrame = 0;
-
-function startTalking() {
-  if (animInterval) return;
-  animInterval = setInterval(() => {
-    currentFrame = (currentFrame % 2) + 1; // Flips between frame 1 and 2
-    faceImg.src = frames[currentFrame];
-  }, 150);
-}
-
-function stopTalking() {
-  clearInterval(animInterval);
-  animInterval = null;
-  faceImg.src = frames[0];
-  currentFrame = 0;
-}
-
-if (faceContainer) {
-  faceContainer.addEventListener('mouseenter', startTalking);
-  faceContainer.addEventListener('mouseleave', stopTalking);
-  faceContainer.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    faceContainer.classList.toggle('active');
-    if (faceContainer.classList.contains('active')) startTalking();
-    else stopTalking();
-  });
+// FACE PEEK ON LOAD
+const facePeek = document.getElementById('face-peek');
+if (facePeek) {
+  facePeek.style.display = 'block';
+  setTimeout(() => {
+    facePeek.classList.add('visible');
+  }, 800);
 }
 
 // STICKY HEADER & NAV STATE
