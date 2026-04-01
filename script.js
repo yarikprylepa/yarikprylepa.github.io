@@ -46,25 +46,58 @@ const revealObserver = new IntersectionObserver((entries, observer) => {
   });
 }, revealOptions);
 
-// Scroll-spy
+// Scroll-spy with more robust detection
+const sections = document.querySelectorAll('section');
 const navItems = document.querySelectorAll('nav a, .mobile-nav a');
-const spyOptions = { threshold: 0.4, rootMargin: "-20% 0px -20% 0px" };
+
+const options = {
+  threshold: [0, 0.2, 0.4, 0.6, 0.8, 1],
+  rootMargin: "-80px 0px -20% 0px"
+};
 
 const spyObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const id = entry.target.getAttribute('id');
-      navItems.forEach(item => {
-        item.classList.remove('active');
-        if (item.getAttribute('href') === `#${id}`) item.classList.add('active');
-      });
+  // Find which section is most visible or 'highest' in the viewable area
+  let mostVisibleSection = null;
+  let maxRatio = 0;
+
+  // We check which section is currently the most prominent
+  sections.forEach(section => {
+    const rect = section.getBoundingClientRect();
+    // A section is 'active' if its top is near the top of the viewport (taking navbar height into account)
+    if (rect.top <= 100 && rect.bottom >= 100) {
+      mostVisibleSection = section;
     }
   });
-}, spyOptions);
 
-const revealElements = document.querySelectorAll('.reveal');
-revealElements.forEach(el => revealObserver.observe(el));
-document.querySelectorAll('section').forEach(section => spyObserver.observe(section));
+  if (mostVisibleSection) {
+    const id = mostVisibleSection.getAttribute('id');
+    updateActiveNavItem(id);
+  }
+}, options);
+
+function updateActiveNavItem(id) {
+  navItems.forEach(item => {
+    item.classList.remove('active');
+    if (item.getAttribute('href') === `#${id}`) {
+      item.classList.add('active');
+    }
+  });
+}
+
+// Observe sections
+sections.forEach(section => spyObserver.observe(section));
+
+// Manual scroll event as fallback for quick scrolling
+window.addEventListener('scroll', () => {
+  let current = "";
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop;
+    if (window.scrollY >= sectionTop - 120) {
+      current = section.getAttribute("id");
+    }
+  });
+  if (current) updateActiveNavItem(current);
+}, { passive: true });
 
 // Staggered reveals
 const staggerContainers = document.querySelectorAll('.index-list, .project-spreads, .skill-list');
@@ -83,6 +116,9 @@ window.addEventListener('scroll', () => {
   header.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
 
+const revealElements = document.querySelectorAll('.reveal');
+revealElements.forEach(el => revealObserver.observe(el));
+
 // Smooth Scrolling
 const navLinks = document.querySelectorAll('nav a, header .logo, footer a');
 navLinks.forEach(link => {
@@ -92,6 +128,10 @@ navLinks.forEach(link => {
     e.preventDefault();
     const targetElement = document.querySelector(href);
     if (targetElement) {
+      if (href.startsWith('#')) {
+        const id = href.substring(1);
+        updateActiveNavItem(id);
+      }
       window.scrollTo({
         top: href === '#home' ? 0 : targetElement.offsetTop - 80,
         behavior: 'smooth'
