@@ -1,3 +1,7 @@
+// Force scroll to top on every page load/refresh
+history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
+
 // Theme Switch
 const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
 const htmlElement = document.documentElement;
